@@ -35,7 +35,7 @@ function createItem(req, res) {
     const form = new IncomingForm();
     form.parse(req, (err, fields) => {
         const item = {
-            id: 'asdf' + ('0000' + (Math.random() * 9999 | 0)).slice(-4),
+            id: 'asdf' + ('0000' + (Math.random() * 9999 | 0)).slice(-4), // | 0 like .floor(), non-floating number
             name: fields.name,
             color: fields.color
         };

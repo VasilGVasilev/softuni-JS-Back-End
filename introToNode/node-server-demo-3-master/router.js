@@ -1,5 +1,14 @@
 const routes = {};
 
+// when match is applied 
+// {
+//     '/': { GET: [Function: homePage] },
+//     '/catalog': { GET: [Function: catalogPage] },
+//     '/create': { GET: [Function: createPage], POST: [Function: createItem] },
+//     '/about': { GET: [Function: aboutPage] },
+//     default: { GET: [Function: defaultPage] }
+//   }
+
 // routes are not hardcoded into router => need for register
 
 function register(method, path, handler) {
@@ -11,6 +20,7 @@ function register(method, path, handler) {
 
 // req, res like e in eventListener => no need to put them in match in index.js but here useful, their info comes from client
 function match(req, res) {
+    
     console.log('>>>', req.method, req.url);
 
     const url = new URL(req.url, `http://${req.headers.host}`); //needs base too so two args
