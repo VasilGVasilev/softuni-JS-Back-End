@@ -1,5 +1,6 @@
 const routes = {};
 
+// routes are not hardcoded into router => need for register
 
 function register(method, path, handler) {
     if (routes[path] == undefined) {

@@ -8,7 +8,7 @@ function catalogPage(req, res) {
     <p>List of items</p>
     <ul>
         ${data.map(i => `<li data-id=${i.id}>${i.name} - ${i.color}</li>`).join('\n')}
-    </ul>`, 'Catalog'));
+    </ul>`, 'Catalog')); //not optmised as lit-html and to avoid , due to iterating with .map() use join('\n')
     res.end();
 }
 
@@ -25,7 +25,7 @@ function createPage(req, res) {
         </label>
         <input type="submit" value="Create">
     </form>`, 'Create New Item'));
-    res.end();
+    res.end(); // the default form action would be get and e.preventDefault() results in need for us to update it to <form method="POST" action="/create"></form>
 }
 
 function createItem(req, res) {

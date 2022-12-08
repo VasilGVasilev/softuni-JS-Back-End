@@ -19,6 +19,8 @@ function html(body, title = 'Demo Site') {
 </html>`;
 }
 
+
+// in case of server refresh - any changes on data will no persist, using FileSystem solves this problem
 const data = [
     {
         id: 'asdf0001',
