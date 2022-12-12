@@ -13,8 +13,9 @@ function subscribe(eventType, callback){
 }
 
 // emit
-function publish(eventType, data){
-    subscribers[eventType].forEach(cb => cb(data));
+// better to have a possibility for many args of data => array
+function publish(eventType, ...params){
+    subscribers[eventType].forEach(cb => cb.apply(null, params)); //or cb(...params)
 }
 
 module.exports = {
