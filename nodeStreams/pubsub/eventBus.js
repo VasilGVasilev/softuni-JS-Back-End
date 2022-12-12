@@ -13,8 +13,8 @@ function subscribe(eventType, callback){
 }
 
 // emit
-function publish(eventType){
-    subscribers[eventType].forEach(cb => cb());
+function publish(eventType, data){
+    subscribers[eventType].forEach(cb => cb(data));
 }
 
 module.exports = {
