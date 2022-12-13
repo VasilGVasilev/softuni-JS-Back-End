@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 // emitters that create the stream
-const readStream = fs.createReadStream('./text.txt', {encoding: 'utf-8'}); 
+const readStream = fs.createReadStream('./text.txt', {encoding: 'utf-8', highWaterMark: 1000});  // you can add highwatermark to limit reads which will respectively limit writes for more optimsed transfer manually done
 const writeStream = fs.createWriteStream('./copyText.txt', {encoding: 'utf-8'}); 
 
 // listeners .on() detects the new stream
