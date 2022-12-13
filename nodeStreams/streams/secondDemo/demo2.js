@@ -5,14 +5,16 @@ const readStream = fs.createReadStream('./text.txt', {encoding: 'utf-8', highWat
 const writeStream = fs.createWriteStream('./copyText.txt', {encoding: 'utf-8'}); 
 
 // listeners .on() detects the new stream
-readStream.on('data', (chunk) => {
-    writeStream.write(chunk)
-})
+// readStream.on('data', (chunk) => {
+//     writeStream.write(chunk)
+// })
 
-readStream.on('end', () => {
-    writeStream.end();
-    console.log('Finished');
-})
+// readStream.on('end', () => {
+//     writeStream.end();
+//     console.log('Finished');
+// })
+
+readStream.pipe(writeStream);
 
 writeStream.on('finish', () => {
     console.log('File is saved');
