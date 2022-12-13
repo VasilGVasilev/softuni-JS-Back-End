@@ -3,6 +3,7 @@ const fs = require('fs');
 
 // better async rather then sync version
 fs.readFile('./text.txt', {encoding: 'utf-8'}, (err, data) =>{
+    // err checking is node standard
     if(err){
         console.log(err);
         return;
