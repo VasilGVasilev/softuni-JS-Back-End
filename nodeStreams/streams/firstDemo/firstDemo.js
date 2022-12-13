@@ -20,3 +20,7 @@ readStream.on('data', (chunk) => {
 // a chunk of data is available to be read from the stream:
 // - When a stream is READING data from a file on the file system
 // - When data is being WRITTEN to a stream and then read back out.
+
+// WHY ARE STREAM MORE EFFICIENT?
+// The 'data' event will be triggered EACH TIME a chunk of data is available to be read.
+// Thus, you manipulate a chunk at a time!
