@@ -8,6 +8,9 @@ readStream.on('data', (chunk) => {
     console.log(chunk);
 })
 
+// .on() is part of the main stream module
+// it is also part of the events module
+
 // createReadStream creates a readbale stream 
 // .on() is an event listener that listens for events emiited by the readable stream
 //  it listens for a data event, which in fact is emitted whenever,
