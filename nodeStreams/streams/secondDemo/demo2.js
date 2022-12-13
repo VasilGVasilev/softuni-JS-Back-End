@@ -1,5 +1,7 @@
 const fs = require('fs');
+const { createGzip } = require('zlib')
 
+const gzip = createGzip();
 // emitters that create the stream
 const readStream = fs.createReadStream('./text.txt', {encoding: 'utf-8', highWaterMark: 1000});  // you can add highwatermark to limit reads which will respectively limit writes for more optimsed transfer manually done
 const writeStream = fs.createWriteStream('./copyText.txt', {encoding: 'utf-8'}); 
@@ -14,7 +16,7 @@ const writeStream = fs.createWriteStream('./copyText.txt', {encoding: 'utf-8'});
 //     console.log('Finished');
 // })
 
-readStream.pipe(writeStream);
+readStream.pipe(gzip).pipe(writeStream);
 
 writeStream.on('finish', () => {
     console.log('File is saved');
