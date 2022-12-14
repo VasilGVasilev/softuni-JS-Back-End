@@ -1,0 +1,14 @@
+When using Nginx as a web server, you can set up URL 
+redirects by creating a new server block in your Nginx 
+configuration file. This server block should listen on 
+the original URL and then redirect the request to the 
+new URL. For example, if you wanted to redirect all 
+requests for http://www.example.com to http://www.new-example.com, 
+you could use the following configuration:
+
+server {
+    listen 80;
+    server_name www.example.com;
+
+    return 301 http://www.new-example.com$request_uri;
+}
