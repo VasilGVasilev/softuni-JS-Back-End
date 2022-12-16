@@ -6,6 +6,7 @@ const url = require('url');
 const { renderAddBreed } = require('./handlers/renderAddBreed');
 const { renderAddCat } = require('./handlers/renderAddCat');
 const updateBreed = require('./dataManipulation/updateBreed');
+const postCat = require('./dataManipulation/postCat');
 
 // NB const cats = require('./cats.json') CommonJS automatically parses the json into an object stored in const cats
 
@@ -14,7 +15,6 @@ const server = http.createServer(async (req, res) => {
     // let params = querystring.parse(qs);
     const relevantPathname = url.parse(req.url).pathname
     const relevantQuery = url.parse(req.url).query;
-
 
     let param;
     res.writeHead(200, {
@@ -31,6 +31,10 @@ const server = http.createServer(async (req, res) => {
         res.write(siteCss);
     } else if (relevantPathname == '/cats/add-cat') {
 
+        if(relevantQuery != null) {
+            param = relevantQuery.split('&');
+            await postCat(param)
+        } 
         let addCatPage = await renderAddCat();
         res.write(addCatPage);
         
@@ -39,7 +43,6 @@ const server = http.createServer(async (req, res) => {
         if(relevantQuery != null) {
             param = relevantQuery.split('=').pop();
             await updateBreed(param)
-
         } 
         let addBreedPage = await renderAddBreed();
         res.write(addBreedPage)
