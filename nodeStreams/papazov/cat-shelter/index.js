@@ -1,16 +1,22 @@
 const http = require('http');
 const fs = require('fs/promises');
-const { renderHome } = require('./render');
+const { renderHome } = require('./handlers/renderHome');
 // const querystring = require('querystring');
 const url = require('url');
+const { renderAddBreed } = require('./handlers/renderAddBreed');
+const { renderAddCat } = require('./handlers/renderAddCat');
+const updateBreed = require('./dataManipulation/updateBreed');
 
 // NB const cats = require('./cats.json') CommonJS automatically parses the json into an object stored in const cats
 
 const server = http.createServer(async (req, res) => {
     // let [pathname, qs] = req.url.split('?')
     // let params = querystring.parse(qs);
-    const urlParts = url.parse(req.url);
-    const relevantQuery = urlParts.query;
+    const relevantPathname = url.parse(req.url).pathname
+    const relevantQuery = url.parse(req.url).query;
+
+
+    let param;
     res.writeHead(200, {
         'Content-Type': 'text/html'
     });
@@ -23,18 +29,23 @@ const server = http.createServer(async (req, res) => {
 
         let siteCss = await fs.readFile('./styles/site.css', 'utf-8');
         res.write(siteCss);
-    } else if (req.url == '/cats/add-cat') {
+    } else if (relevantPathname == '/cats/add-cat') {
 
-        let addCatPage = await fs.readFile('./views/addCat.html', 'utf-8');
+        let addCatPage = await renderAddCat();
         res.write(addCatPage);
         
-    }  else if (req.url == '/cats/add-breed') {
-
-        let addBreedPage = await fs.readFile('./views/addBreed.html', 'utf-8');
-        res.write(addBreedPage);
+    } else if (relevantPathname == '/cats/add-breed') {
         
-    } else {
-        let param;
+        if(relevantQuery != null) {
+            param = relevantQuery.split('=').pop();
+            await updateBreed(param)
+
+        } 
+        let addBreedPage = await renderAddBreed();
+        res.write(addBreedPage)
+    }
+    else {
+        
         if(relevantQuery != null){
             param = relevantQuery.split('=').pop();
         }

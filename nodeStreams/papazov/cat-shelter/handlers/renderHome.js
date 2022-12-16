@@ -15,7 +15,7 @@ const catTemplate = (cat) => `
 
 async function renderHome(search) {
     let homePageHtml = await fs.readFile('./views/home.html', 'utf-8');
-    let catsResult = await fs.readFile('./cats.json');
+    let catsResult = await fs.readFile('./data/cats.json');
     let cats = JSON.parse(catsResult);
 
     const catsPageResult = cats

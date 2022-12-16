@@ -10,14 +10,14 @@
         "name": "Pesho",
         "imageUrl": "https://cdn.pixabay.com/photo/2017/02/20/18/03/cat-2083492_1280.jpg",
         "price": 350,
-        "breed": "Bombay Cat",
+        "breed": "American Bobtail Cat",
         "description": "Dominant and aggressive to other cats. Will probably eat you in your sleep. Very cute tho."
     },
     {
         "name": "Gosho",
         "imageUrl": "https://cdn.pixabay.com/photo/2017/02/20/18/03/cat-2083492_1280.jpg",
         "price": 350,
-        "breed": "Bombay Cat",
+        "breed": "Fluffy Cat",
         "description": "Dominant and aggressive to other cats. Will probably eat you in your sleep. Very cute tho."
     },
     {
