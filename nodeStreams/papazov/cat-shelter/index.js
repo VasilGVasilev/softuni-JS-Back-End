@@ -11,7 +11,6 @@ const server = http.createServer(async (req, res) => {
     // let params = querystring.parse(qs);
     const urlParts = url.parse(req.url);
     const relevantQuery = urlParts.query;
-
     res.writeHead(200, {
         'Content-Type': 'text/html'
     });
@@ -28,12 +27,19 @@ const server = http.createServer(async (req, res) => {
 
         let addCatPage = await fs.readFile('./views/addCat.html', 'utf-8');
         res.write(addCatPage);
+        
+    }  else if (req.url == '/cats/add-breed') {
+
+        let addBreedPage = await fs.readFile('./views/addBreed.html', 'utf-8');
+        res.write(addBreedPage);
+        
     } else {
-        if (relevantQuery != null){
-            let param = relevantQuery.split('=').pop();
-            let homePage = await renderHome(param);
-            res.write(homePage);
+        let param;
+        if(relevantQuery != null){
+            param = relevantQuery.split('=').pop();
         }
+        let homePage = await renderHome(param);
+        res.write(homePage);
 
     }
     res.end();
