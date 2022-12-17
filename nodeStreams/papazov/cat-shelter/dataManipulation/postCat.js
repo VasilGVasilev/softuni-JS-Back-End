@@ -9,8 +9,9 @@ async function postCat(param){
     // added cats overwrite the DB so persist after server is stopped
     let streamCats = await fs.readFile('./data/cats.json');
     let currentCats = JSON.parse(streamCats);
-
+    let id = currentCats.length + 1;
     currentCats.push({
+        id,
         name,
         description,
         upload,
