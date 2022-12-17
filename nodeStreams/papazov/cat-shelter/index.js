@@ -50,12 +50,12 @@ const server = http.createServer(async (req, res) => {
         res.write(addBreedPage)
     } else if (relevantPathname.startsWith('/cats-edit')) {
         let catId = relevantPathname.split('/').pop();
-        if (req.method == 'GET'){
-            let editCatPage = await renderEdit(catId);
-            res.write(editCatPage)
-        } else if (req.method == 'POST'){
-            await updateCat(req, res, catId);
-        }
+        if(relevantQuery != null) {
+            param = relevantQuery.split('=').pop();
+            await updateCat(param, catId);
+        } 
+        let editCatPage = await renderEdit(catId);
+        res.write(editCatPage)
 
     } else {
         
