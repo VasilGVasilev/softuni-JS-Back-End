@@ -8,6 +8,7 @@ const { renderAddCat } = require('./handlers/renderAddCat');
 const updateBreed = require('./dataManipulation/updateBreed');
 const postCat = require('./dataManipulation/postCat');
 const { renderEdit } = require('./handlers/renderEditCat');
+const updateCat = require('./dataManipulation/updateCat');
 
 // NB const cats = require('./cats.json') CommonJS automatically parses the json into an object stored in const cats
 
@@ -49,8 +50,13 @@ const server = http.createServer(async (req, res) => {
         res.write(addBreedPage)
     } else if (relevantPathname.startsWith('/cats-edit')) {
         let catId = relevantPathname.split('/').pop();
-        let editCatPage = await renderEdit(catId);
-        res.write(editCatPage)
+        if (req.method == 'GET'){
+            let editCatPage = await renderEdit(catId);
+            res.write(editCatPage)
+        } else if (req.method == 'POST'){
+            await updateCat(req, res, catId);
+        }
+
     } else {
         
         if(relevantQuery != null){

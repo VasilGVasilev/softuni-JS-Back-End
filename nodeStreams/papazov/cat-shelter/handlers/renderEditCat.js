@@ -5,7 +5,7 @@ const breedTemplate = (breed) => `
 `;
 
 const editTemplate = (cat) => `
-    <form action="/cats-edit/${cat.id}" method="POST" class="cat-form" enctype="multipart/form-data">
+    <form method="POST" action="/cats-edit/${cat.id}" class="cat-form" enctype="multipart/form-data">
         <h2>Edit Cat</h2>
         <label for="name">Name</label>
         <input type="text" id="name" value="${cat.name}">
@@ -17,7 +17,7 @@ const editTemplate = (cat) => `
         <select id="group">
             {{breeds}}
         </select>
-        <button>Edit Cat</button>
+        <input type="submit" value="Edit Cat"></input>
     </form>
 `;
 
