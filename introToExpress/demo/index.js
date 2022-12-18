@@ -20,4 +20,16 @@ app.put('/cats', (req, res) => {
 
 // app.all() is used rarely due to app.use() middleware 
 
+// Summary for app.all('*', fn) vs. app.use(fn):
+
+//     No difference in order of execution.
+//     app.use() fires regardless of methods, app.all() only fires for parser supported methods (probably not relevant since the node.js http parser supports all expected methods).
+
+// Summary for app.all('/test', fn) vs. app.use('/test', fn):
+
+//     No difference in order of execution
+//     app.use() fires regardless of methods, app.all() only fires for parser supported methods (probably not relevant since the node.js http parser supports all expected methods).
+//     app.use() fires for all paths that start with /test include /test/1/ or /test/otherpath/more/1. app.all() only fires if its an exact match to the requested url.x
+
+
 app.listen(5000, ()=> console.log('Server listening on port 5000...'));
