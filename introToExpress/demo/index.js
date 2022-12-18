@@ -8,4 +8,16 @@ app.get('/', (req, res) => {
     res.send('hello world') //instead res.write() + res.end(); Express is another layer on top of http, so these work but are too low-level
 });
 
+app.post('/cats/', (req, res) => {
+    // TODO: implement
+    res.send('Cat posted')
+});
+
+app.put('/cats', (req, res) => {
+    // TODO: implement
+    res.send('Modify existing cat');
+});
+
+// app.all() is used rarely due to app.use() middleware 
+
 app.listen(5000, ()=> console.log('Server listening on port 5000...'));
