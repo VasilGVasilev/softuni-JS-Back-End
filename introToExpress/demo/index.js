@@ -52,6 +52,13 @@ app.get('/express-download', (req, res)=>{
 })
 
 
+
+// Redirect Status code 302 
+app.get('/express-redirect', (req, res) => {
+    res.redirect('/cats');
+});
+
+
 app.post('/cats', (req, res) => {
     // TODO: implement
     res.send('Cat posted')

@@ -73,7 +73,7 @@ app.put('/cats', (req, res) => {
     res.send('Modify existing cat');
 });
 
-// Default way
+// Default download HTTP
 app.get('/download', (req, res) => {
     res.writeHead(200, {
         // 'content-disposition': 'attachment; fileName="sample.pdf"'
@@ -97,6 +97,8 @@ app.get('/express-download', (req, res) => {
     res.download('sample.pdf');
 });
 
+
+// Redirect
 app.get('/redirect', (req, res) => {
     res.writeHead(302, {
         'Location': '/cats'
