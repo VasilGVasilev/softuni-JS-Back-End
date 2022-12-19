@@ -10,7 +10,14 @@ app.get('/', (req, res) => {
     res.send('hello world') //instead res.write() + res.end(); Express is another layer on top of http, so these work but are too low-level
 });
 
-app.post('/cats/', (req, res) => {
+// req.params
+app.get('/listofnames/:firstname/:secondname', (req, res) => {
+    console.log(req.params);
+});
+	
+// { firstname: 'azis', secondname: 'bobi' }
+
+app.post('/cats', (req, res) => {
     // TODO: implement
     res.send('Cat posted')
 });
