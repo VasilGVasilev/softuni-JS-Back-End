@@ -1,5 +1,5 @@
 const express = require('express');
-const fs = require('fs');
+// const fs = require('fs');
 
 const app = express() //factory function that creates a new instance -> app === server in http.createServer
 // its like app is the main function and you attach actions to make the application responsive (app.get, app.use, etc)
@@ -18,30 +18,36 @@ app.get('/listofnames/:firstname/:secondname', (req, res) => {
 });
 
 
+// HTTP download
 // download by creating a stream and then this stream is read in chunks, content-disposition is cruial to know the stream is for download
-app.get('/download', (req, res) => {
-    res.writeHead(200, {
-        'content-disposition': 'attachment; fileName="sample.pdf"'
-        // 'content-disposition': 'inline', -> makes the browser downloads and opens the file, but also say MIME type
-        // 'content-type' :  'application/pdf'
-    })
-    // create stream /event/
-    const readStream = fs.createReadStream('sample.pdf');
+// app.get('/download', (req, res) => {
+//     res.writeHead(200, {
+//         'content-disposition': 'attachment; fileName="sample.pdf"'
+//         // 'content-disposition': 'inline', -> makes the browser downloads and opens the file, but also say MIME type
+//         // 'content-type' :  'application/pdf'
+//     })
+//     // create stream /event/
+//     const readStream = fs.createReadStream('sample.pdf');
 
-    // better practice is piping -> theStreamToBeRead.pipe(theStreamThatWrites) res could be viewed in this case as a stream
-    readStream.pipe(res)
+//     // better practice is piping -> theStreamToBeRead.pipe(theStreamThatWrites) res could be viewed in this case as a stream
+//     readStream.pipe(res)
 
-    // Detailed piping NB -> you may overwhelm the destination writable stream with the read stream
+//     // Detailed piping NB -> you may overwhelm the destination writable stream with the read stream
 
-    // // start listening for event -> event was the above creation of a stream
-    // readStream.on('data', (data)=>{
-    //     res.write(data);
-    // })
+//     // // start listening for event -> event was the above creation of a stream
+//     // readStream.on('data', (data)=>{
+//     //     res.write(data);
+//     // })
 
-    // // after listening, end 
-    // readStream.on('end', ()=>{
-    //     res.end();
-    // })
+//     // // after listening, end 
+//     // readStream.on('end', ()=>{
+//     //     res.end();
+//     // })
+// })
+
+// Express download
+app.get('/express-download', (req, res)=>{
+    res.download('sample.pdf');
 })
 
 
