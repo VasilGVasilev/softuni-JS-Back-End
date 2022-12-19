@@ -47,7 +47,8 @@ app.get('/listofnames/:firstname/:secondname', (req, res) => {
 
 // Express download
 app.get('/express-download', (req, res)=>{
-    res.download('sample.pdf');
+    res.download('sample.pdf'); // terminates request
+    res.attachment() //does not terminate request
 })
 
 
