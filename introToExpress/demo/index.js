@@ -22,19 +22,26 @@ app.get('/listofnames/:firstname/:secondname', (req, res) => {
 app.get('/download', (req, res) => {
     res.writeHead(200, {
         'content-disposition': 'attachment; fileName="sample.pdf"'
+        // 'content-disposition': 'inline', -> makes the browser downloads and opens the file, but also say MIME type
+        // 'content-type' :  'application/pdf'
     })
     // create stream /event/
     const readStream = fs.createReadStream('sample.pdf');
 
-    // start listening for event -> event was the above creation of a stream
-    readStream.on('data', (data)=>{
-        res.write(data);
-    })
+    // better practice is piping -> theStreamToBeRead.pipe(theStreamThatWrites) res could be viewed in this case as a stream
+    readStream.pipe(res)
 
-    // after listening, end 
-    readStream.on('end', ()=>{
-        res.end();
-    })
+    // Detailed piping NB -> you may overwhelm the destination writable stream with the read stream
+
+    // // start listening for event -> event was the above creation of a stream
+    // readStream.on('data', (data)=>{
+    //     res.write(data);
+    // })
+
+    // // after listening, end 
+    // readStream.on('end', ()=>{
+    //     res.end();
+    // })
 })
 
 
