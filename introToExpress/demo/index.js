@@ -1,4 +1,5 @@
 const express = require('express');
+const fs = require('fs');
 
 const app = express() //factory function that creates a new instance -> app === server in http.createServer
 // its like app is the main function and you attach actions to make the application responsive (app.get, app.use, etc)
@@ -13,9 +14,29 @@ app.get('/', (req, res) => {
 // req.params
 app.get('/listofnames/:firstname/:secondname', (req, res) => {
     console.log(req.params);
+    // { firstname: 'azis', secondname: 'bobi' }
 });
-	
-// { firstname: 'azis', secondname: 'bobi' }
+
+
+// download by creating a stream and then this stream is read in chunks, content-disposition is cruial to know the stream is for download
+app.get('/download', (req, res) => {
+    res.writeHead(200, {
+        'content-disposition': 'attachment; fileName="sample.pdf"'
+    })
+    // create stream /event/
+    const readStream = fs.createReadStream('sample.pdf');
+
+    // start listening for event -> event was the above creation of a stream
+    readStream.on('data', (data)=>{
+        res.write(data);
+    })
+
+    // after listening, end 
+    readStream.on('end', ()=>{
+        res.end();
+    })
+})
+
 
 app.post('/cats', (req, res) => {
     // TODO: implement
