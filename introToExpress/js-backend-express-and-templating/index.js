@@ -13,7 +13,7 @@ const users = [
 const app = express();
 
 app.engine('hbs', handlebars.engine({
-    extname: 'hbs',
+    extname: 'hbs', //extention name redefined from default .handlebars to .hbs
 })); // middleware for starting template engine
 
 app.set('view engine', 'hbs'); //which engine specifically
@@ -22,14 +22,14 @@ app.use('/static', express.static('public'));
 
 app.use(catMiddleware);
 
-app.get('/:name?', (req, res) => {
+app.get('/:name?', (req, res) => { //? in /:name is optional paramater => name: req.params.name || 'Guest'
     // res.write('Hello world!');
     // res.write('Hello world!');
     // res.end();
     // res.send('Hello World!');
     
     res.render('home', {
-        name: req.params.name || 'Guest',
+        name: req.params.name || 'Guest', //value that is consumed in layouts->main.hbs->{{{body}}}->{{name}}
         users,
         isAuth: true,
         danger: '<script>alert("you are hacked!")</script>'
@@ -39,6 +39,13 @@ app.get('/:name?', (req, res) => {
     // render main.hbs in layouts with {{{body}}}
     // render home.hbs by attaching home.hbs in the {{{body}}} part of main.hbs
 });
+
+{/* <ul>
+    {{#each users}} // #each ... /each is for loop like syntax provided by handlebars
+        {{>user}}
+    {{/each}}
+</ul> */}
+
 
 // app.get('/img/:imgName', (req, res) => {
 //     res.sendFile(path.resolve('./public/img', req.params.imgName));  
