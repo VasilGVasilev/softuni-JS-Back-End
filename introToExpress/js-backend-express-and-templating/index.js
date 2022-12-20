@@ -14,6 +14,7 @@ const app = express();
 
 app.engine('hbs', handlebars.engine({
     extname: 'hbs', //extention name redefined from default .handlebars to .hbs
+    // partials work by using in the main layout -> main.hbs -> {{{body}}} -> home.hbs -> {{>user}} which comes from user.hsb in partials
 })); // middleware for starting template engine
 
 app.set('view engine', 'hbs'); //which engine specifically
