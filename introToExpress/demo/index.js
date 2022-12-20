@@ -1,10 +1,14 @@
 const express = require('express');
 // const fs = require('fs');
+const path = require('path')
 
 const app = express() //factory function that creates a new instance -> app === server in http.createServer
 // its like app is the main function and you attach actions to make the application responsive (app.get, app.use, etc)
 
-
+app.use('/public', express.static('public')); // http://localhost:5000/public/img/cute-cat.jpg 
+// you need to pass in the whole /public/img/cute-cat.js
+// but middleware looks for /public pathname
+// and for that path it looks for folder 'public'
 
 // Action - the entity on the server side that awaits the endpoint ('/') to be requested via GET to respond with the CB (req, res)
 app.get('/', (req, res) => {
@@ -51,6 +55,12 @@ app.get('/express-download', (req, res)=>{
     res.attachment() //does not terminate request
 })
 
+// Get img by param via HTTP
+// app.get('/img/:imgName', (req, res) =>{
+//     res.sendFile(path.resolve('./img', req.params.imgName))
+// })
+
+// Express static -> see middleware above
 
 
 // Redirect Status code 302 
