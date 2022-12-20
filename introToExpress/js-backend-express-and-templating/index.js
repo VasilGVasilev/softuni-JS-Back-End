@@ -33,7 +33,7 @@ app.get('/:name?', (req, res) => { //? in /:name is optional paramater => name: 
         name: req.params.name || 'Guest', //value that is consumed in layouts->main.hbs->{{{body}}}->{{name}}
         users,
         isAuth: true,
-        danger: '<script>alert("you are hacked!")</script>'
+        danger: '<script>alert("you are hacked!")</script>' //handlebars with {{}} escapes execution, but with {{{}}} it executes, it is bad practice to set scripts in {{{}}} due to XSS attacks vulnerablities
     }); //render comes from adding engine above
     // lib requires layout dir for static layout like basic html that does not change
     // order of execution:
