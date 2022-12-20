@@ -1,9 +1,13 @@
 const express = require('express');
 // const fs = require('fs');
-const path = require('path')
+// const path = require('path')
+
+// we will use express-handlebar due to being more inline with our current tasks
+// see papazov demo for handlebars
 
 const app = express() //factory function that creates a new instance -> app === server in http.createServer
 // its like app is the main function and you attach actions to make the application responsive (app.get, app.use, etc)
+
 
 app.use('/public', express.static('public')); // http://localhost:5000/public/img/cute-cat.jpg 
 // you need to pass in the whole /public/img/cute-cat.js
