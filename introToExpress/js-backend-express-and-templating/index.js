@@ -14,8 +14,9 @@ const app = express();
 
 app.engine('hbs', handlebars.engine({
     extname: 'hbs',
-}));
-app.set('view engine', 'hbs');
+})); // middleware for starting template engine
+
+app.set('view engine', 'hbs'); //which engine specifically
 
 app.use('/static', express.static('public'));
 
@@ -32,7 +33,11 @@ app.get('/:name?', (req, res) => {
         users,
         isAuth: true,
         danger: '<script>alert("you are hacked!")</script>'
-    });
+    }); //render comes from adding engine above
+    // lib requires layout dir for static layout like basic html that does not change
+    // order of execution:
+    // render main.hbs in layouts with {{{body}}}
+    // render home.hbs by attaching home.hbs in the {{{body}}} part of main.hbs
 });
 
 // app.get('/img/:imgName', (req, res) => {
