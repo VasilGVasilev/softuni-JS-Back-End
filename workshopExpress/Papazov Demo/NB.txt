@@ -1,0 +1,29 @@
+on app.engine()
+app.engine(ext, callback) method to create your own template engine. 
+    => ext refers to the file extension, and callback is the template engine function
+
+In the Express.js web application framework, the app.engine() function is used to specify the template engine 
+that will be used to render dynamic HTML pages.
+To use app.engine(), you need to specify the name of the template engine as the first argument and a callback 
+function as the second argument. The callback function should return the template engine module that you 
+want to use.
+
+Here's an example of how to use app.engine() to specify the ejs template engine:
+
+    const express = require('express');
+    const app = express();
+
+    app.engine('ejs', require('ejs').renderFile);
+
+    app.set('view engine', 'ejs');
+
+This code tells Express to use the ejs template engine to render dynamic HTML pages (app.engine()), 
+and sets the default view engine to ejs (app.set()).
+Once you've set the view engine, you can use the res.render() function to render a 
+dynamic HTML page using the specified template engine. For example:
+
+    app.get('/', (req, res) => {
+    res.render('index', { title: 'My App', message: 'Hello World!' });
+    });
+
+This code will render the index.ejs template file located in the views directory, passing in the title and message variables as local variables that can be used in the template.
