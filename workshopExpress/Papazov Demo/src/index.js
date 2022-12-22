@@ -11,7 +11,9 @@ app.engine('hbs', handlebars.engine({
     extname: 'hbs'
 }));
 app.set('view engine', 'hbs');
-app.set('views', './src/views');
+app.set('views', './src/views'); 
+//when starting the app, the app by means of res.render('index',{OPTIONS}), searches the views in root/views -> the root here being Papazov Demo
+// you have to set it to root/src/views || ['Papazov Demo']/src/views || ./src/views
 
 app.use(routes);
 
