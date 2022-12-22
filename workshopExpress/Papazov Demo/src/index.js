@@ -23,6 +23,9 @@ app.set('views', './src/views');
 // Setting the 'views' setting allows Express to know where to find the view templates 
 // that you want to render when a request is made to your application. 
 
-app.use(routes);
+app.use(routes); //how the rendering works ->
+// routes -> router.use('/', homeController) -> res.render('index', { cubes, search, from, to });
+// res.render -> handlebars expects a main.hbs in a laywouts folder to begin with, it's the main skelelton
+// with each res.render(FILE, VARIABALES) then this main.hbs is used as skeleton and {{{body}}} is replaced with FILE
 
 app.listen(5000, () => console.log(`App is listening on port 5000`));
