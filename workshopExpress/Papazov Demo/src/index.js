@@ -15,6 +15,14 @@ app.set('views', './src/views');
 //when starting the app, the app by means of res.render('index',{OPTIONS}), searches the views in root/views -> the root here being Papazov Demo
 // you have to set it to root/src/views || ['Papazov Demo']/src/views || ./src/views
 
+// In the case of app.set('views', './views'), the setting being changed is 'views', 
+// which is the directory where the application's view templates are located. 
+// The value being set is './views', which is the path to the views directory relative to 
+// the root directory of the application.
+
+// Setting the 'views' setting allows Express to know where to find the view templates 
+// that you want to render when a request is made to your application. 
+
 app.use(routes);
 
 app.listen(5000, () => console.log(`App is listening on port 5000`));
