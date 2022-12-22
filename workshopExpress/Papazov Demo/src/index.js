@@ -28,4 +28,14 @@ app.use(routes); //how the rendering works ->
 // res.render -> handlebars expects a main.hbs in a laywouts folder to begin with, it's the main skelelton
 // with each res.render(FILE, VARIABALES) then this main.hbs is used as skeleton and {{{body}}} is replaced with FILE
 
+// OFFICIAL express-handlebars explanation LAYOUT:
+// A layout is simply a Handlebars template with a {{{body}}} placeholder. 
+// Usually it will be an HTML page wrapper into which views will be rendered.
+// This view engine adds back the concept of "layout", which was removed in Express 3.x. 
+// It can be configured with a path to the layouts directory, 
+// by default it's set to relative to express settings.view + layouts/
+// There are two ways to set a default layout: configuring the view engine's defaultLayout property, 
+// or setting Express locals app.locals.layout.
+
+
 app.listen(5000, () => console.log(`App is listening on port 5000`));
