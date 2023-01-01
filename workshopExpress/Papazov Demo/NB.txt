@@ -58,4 +58,7 @@ export and import in index.js
 
 summary: we make an instance of express to create a router and add different paths to it and then export back the router and apply app.use(routes) to actually set it on
 
+2:28:00
+nested routes makes the superior modularity funcionality
 you can use this superior routing technique for more complex paths localhost:5000 + /cube + /details/:id || + /create or localhost:5000 + / + '' || 'about'
+basically, you can add a path /cube that has its own router, so app.use delegates to another middleware and may add pathname, until you actually end up with the action and response to the request
