@@ -28,6 +28,19 @@ dynamic HTML page using the specified template engine. For example:
 
 This code will render the index.ejs template file located in the views directory, passing in the title and message variables as local variables that can be used in the template.
 
-3:06:10 - which directory is deemed as root accroding to hbs template?
+3:06:10 
+which directory is deemed as root accroding to hbs template?
 -> the one that nodemon starts, thus, if nodemon ./src/index.js => you need app.set('views', './src/views'), since
 the root folder is src and you have to make hbs aware of that, otherwise -> Error: Failed to lookup view "index" in views directory "./views"
+
+2:43:12 
+old concept of making routes.js -> abstract to routes the routing and but also remember to transfer app to do the actual routing
+routes.js  
+const homeController =  require('./controllers/homeController')
+module.exports = (app) => {
+    app.get('/', homeController.index)
+}
+then you execute that function in index.js
+const routes = require('/routes')
+routes(app)
+
