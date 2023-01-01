@@ -62,3 +62,8 @@ summary: we make an instance of express to create a router and add different pat
 nested routes makes the superior modularity funcionality
 you can use this superior routing technique for more complex paths localhost:5000 + /cube + /details/:id || + /create or localhost:5000 + / + '' || 'about'
 basically, you can add a path /cube that has its own router, so app.use delegates to another middleware and may add pathname, until you actually end up with the action and response to the request
+
+
+2:12:00
+instead of advanced-js semi-hardcoding html into dashboardTemplate which is then multiplied via .map(dashboardTemplate) and rendered
+hbs fills the main.hbs {{{body}}} with index, and index is filled with cubes via special Helpers function
