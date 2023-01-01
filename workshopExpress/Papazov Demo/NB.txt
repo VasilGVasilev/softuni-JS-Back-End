@@ -44,3 +44,16 @@ then you execute that function in index.js
 const routes = require('/routes')
 routes(app)
 
+
+2:39:53
+modern routing concept -> modular
+
+import express in routes.js 
+    const experss = require('express');
+and create router
+    const router = experss.Router();
+for each request 
+    router.use('/', homeController);
+export and import in index.js
+
+you can use this superior routing technique for more complex paths localhost:5000 + /cube + /details/:id || + /create or localhost:5000 + / + '' || 'about'
