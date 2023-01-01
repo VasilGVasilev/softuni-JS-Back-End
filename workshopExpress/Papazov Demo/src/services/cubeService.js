@@ -6,6 +6,8 @@ const cubes = require('../db.json');
 exports.getAll = (search = '', fromInput, toInput) => {
     const from = Number(fromInput) || 0;
     const to = Number(toInput) || 6;
+    // so that you can search by search name only, thus, default values to 'disable' difficulty level
+    // also have in mind that the fromInput and toInput may be undefined so tackle this too
     
     const result = cubes
         .filter(x => x.name.toLowerCase().includes(search.toLowerCase()))
