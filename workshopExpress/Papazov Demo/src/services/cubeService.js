@@ -10,6 +10,7 @@ exports.getAll = (search = '', fromInput, toInput) => {
     const result = cubes
         .filter(x => x.name.toLowerCase().includes(search.toLowerCase()))
         .filter(x => x.difficultyLevel >= from && x.difficultyLevel <= to);
+        // see 48:00 in NB
 
     return result;
 };

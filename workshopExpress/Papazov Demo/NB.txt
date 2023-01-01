@@ -83,3 +83,7 @@ fs module
 
 1:28:00
 better to have data manipulation in separate services module instead of controller having that logic
+
+48:00 
+filter for search functionality works with empty search field because
+'' is an empty string and 'Eco' 'Cubic' do in fact include empty string
