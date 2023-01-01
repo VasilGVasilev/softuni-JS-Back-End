@@ -73,5 +73,5 @@ see main fills with index fills with cubes
 CTRL + P find file
 
 1:52:00
-POST requests have as req.body undefined so -> add
+POST requests have as req.body undefined because browser encoded it, thus, -> add
 app.use(express.urlencoded({extended: false}));
