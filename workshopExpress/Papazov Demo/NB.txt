@@ -56,4 +56,6 @@ for each request
     router.use('/', homeController);
 export and import in index.js
 
+summary: we make an instance of express to create a router and add different paths to it and then export back the router and apply app.use(routes) to actually set it on
+
 you can use this superior routing technique for more complex paths localhost:5000 + /cube + /details/:id || + /create or localhost:5000 + / + '' || 'about'
