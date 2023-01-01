@@ -68,3 +68,6 @@ basically, you can add a path /cube that has its own router, so app.use delegate
 instead of advanced-js semi-hardcoding html into dashboardTemplate which is then multiplied via .map(dashboardTemplate) and rendered
 hbs fills the main.hbs {{{body}}} with index, and index is filled with cubes via special Helpers function
 see main fills with index fills with cubes
+
+2:06:00
+CTRL + P find file
