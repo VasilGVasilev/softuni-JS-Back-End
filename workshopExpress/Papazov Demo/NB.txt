@@ -71,3 +71,7 @@ see main fills with index fills with cubes
 
 2:06:00
 CTRL + P find file
+
+1:52:00
+POST requests have as req.body undefined so -> add
+app.use(express.urlencoded({extended: false}));

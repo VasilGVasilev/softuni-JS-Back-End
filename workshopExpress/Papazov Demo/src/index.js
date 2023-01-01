@@ -5,7 +5,7 @@ const app = express();
 
 app.use('/static', express.static('public'));
 
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: false})); //necessary so that you can read the req.body of POST request
 
 app.engine('hbs', handlebars.engine({
     extname: 'hbs'
