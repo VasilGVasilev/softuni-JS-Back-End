@@ -80,3 +80,6 @@ app.use(express.urlencoded({extended: false}));
 fs module
  remember that fs returns promise so needs to be resolved if using writeFile to persist DB changes
  remember that fs needs an optimised path with happens via path module
+
+1:28:00
+better to have data manipulation in separate services module instead of controller having that logic
