@@ -75,3 +75,8 @@ CTRL + P find file
 1:52:00
 POST requests have as req.body undefined because browser encoded it, thus, -> add
 app.use(express.urlencoded({extended: false}));
+
+1:38:00
+fs module
+ remember that fs returns promise so needs to be resolved if using writeFile to persist DB changes
+ remember that fs needs an optimised path with happens via path module

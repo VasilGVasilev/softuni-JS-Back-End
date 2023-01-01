@@ -22,4 +22,5 @@ exports.save = (cube) => {
     let textData = JSON.stringify(cubes, '', 4);
 
     return fs.writeFile(path.resolve('src', 'db.json'), textData, { encoding: 'utf-8' })
+    // remember that fs returns promise so in cubeController await
 }
