@@ -26,47 +26,54 @@ dynamic HTML page using the specified template engine. For example:
     res.render('index', { title: 'My App', message: 'Hello World!' });
     });
 
-This code will render the index.ejs template file located in the views directory, passing in the title and 
+This code will render the index.js template file located in the views directory, passing in the title and 
 message variables as local variables that can be used in the template.
 
 3:06:10 
-which directory is deemed as root accroding to hbs template?
+which directory is deemed as root according to hbs template?
 -> the one that nodemon starts, thus, if nodemon ./src/index.js => you need app.set('views', './src/views'), since
 the root folder is src and you have to make hbs aware of that, otherwise -> Error: Failed to lookup view "index" in views directory "./views"
 
 2:43:12 
 old concept of making routes.js -> abstract to routes the routing and but also remember to transfer app to do the actual routing
-routes.js  
-const homeController =  require('./controllers/homeController')
-module.exports = (app) => {
-    app.get('/', homeController.index)
-}
-then you execute that function in index.js
-const routes = require('/routes')
-routes(app)
+
+routes.js FILE
+    const homeController = require('./controllers/homeController')
+    module.exports = (app) => {
+        app.get('/', homeController.index)
+    }
+
+then you execute that function in:
+
+index.js FILE
+    const routes = require('/routes')
+    routes(app)
 
 
 2:39:53
 modern routing concept -> modular
 
-import express in routes.js 
-    const experss = require('express');
-and create router
+>import express in routes.js 
+    const express = require('express');
+>create router
     const router = experss.Router();
-for each request 
+>for each request 
     router.use('/', homeController);
-export and import in index.js
+>export and import router in index.js
 
-summary: we make an instance of express to create a router and add different paths to it and then export back the router and apply app.use(routes) to actually set it on
+summary: we make an instance of express to create a router and add different paths to it and 
+then export back the router and apply app.use(routes) to actually set it on
 
 2:28:00
 nested routes makes the superior modularity funcionality
-you can use this superior routing technique for more complex paths localhost:5000 + /cube + /details/:id || + /create or localhost:5000 + / + '' || 'about'
-basically, you can add a path /cube that has its own router, so app.use delegates to another middleware and may add pathname, until you actually end up with the action and response to the request
+you can use this superior routing technique for more complex paths:
+    localhost:5000 + /cube + /details/:id || + /create or localhost:5000 + / + '' || 'about'
+basically, you can add a path /cube that has its own router, so app.use delegates to another middleware and may add pathname, 
+until you actually end up with the action and response to the request
 
 
 2:12:00
-instead of advanced-js semi-hardcoding html into dashboardTemplate which is then multiplied via .map(dashboardTemplate) and rendered
+instead of 'advanced-js' course semi-hardcoding html into dashboardTemplate which is then multiplied via .map(dashboardTemplate) and rendered
 hbs fills the main.hbs {{{body}}} with index, and index is filled with cubes via special Helpers function
 see main fills with index fills with cubes
 

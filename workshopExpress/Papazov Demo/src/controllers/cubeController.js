@@ -3,11 +3,11 @@ const router = require('express').Router();
 const cubeService = require('../services/cubeService');
 
 router.get('/create', (req, res) => {
-    res.render('create');
+    res.render('create'); //app.set('views', './src/views') tells Express where to search for create
 });
 
 router.post('/create', async (req, res) => {
-    const cube = req.body;
+    const cube = req.body; //<form action="/cube/create" method="POST">
 
     // Validate
     if (cube.name.length < 2) {

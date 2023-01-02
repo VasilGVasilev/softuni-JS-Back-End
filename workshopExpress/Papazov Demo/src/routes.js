@@ -1,9 +1,9 @@
-const experss = require('express');
+const express = require('express');
 
 const homeController = require('./controllers/homeController');
 const cubeController = require('./controllers/cubeController');
 
-const router = experss.Router();
+const router = express.Router();
 
 router.use('/', homeController);
 router.use('/cube', cubeController);
