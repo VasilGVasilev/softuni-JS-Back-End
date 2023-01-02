@@ -26,7 +26,8 @@ dynamic HTML page using the specified template engine. For example:
     res.render('index', { title: 'My App', message: 'Hello World!' });
     });
 
-This code will render the index.ejs template file located in the views directory, passing in the title and message variables as local variables that can be used in the template.
+This code will render the index.ejs template file located in the views directory, passing in the title and 
+message variables as local variables that can be used in the template.
 
 3:06:10 
 which directory is deemed as root accroding to hbs template?
