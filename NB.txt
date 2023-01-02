@@ -1,0 +1,2 @@
+I have made a new clone of the GITHUB repo on my local machine
+so that I can migrate to GitHub Desktop for the remainder of softuni-JS-Back-End
