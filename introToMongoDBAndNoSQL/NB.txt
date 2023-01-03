@@ -1,0 +1,17 @@
+Horizontal scaling 
+
+As mentioned above, sharding is horizontal scaling by spreading data across multiple nodes. 
+Each node contains a subset of the overall data. This is especially effective for increasing 
+throughput for use cases that involve significant amounts of write operations, as each operation 
+only affects one of the nodes and the partition of data it is managing.
+
+While sharding happens automatically in MongoDB Atlas, it is still up to us to configure 
+the shard key, which is used by MongoDB for partitioning the data in a non-overlapping 
+fashion across shards. This can be done automatically through either ranged or hashed sharding, 
+or customized using zoned sharding.
+
+Over time, datasets typically do not grow uniformly, and various shards will grow at faster rates 
+than others. As your workloads evolve and data sets grow, there will be a need to rebalance data 
+to ensure an even distribution of load across the cluster. This uneven distribution of data is 
+addressed through shard balancing. 
+In MongoDB, this is handled automatically by the sharded cluster balancer.
