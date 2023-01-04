@@ -3,9 +3,12 @@ const hbs = require('express-handlebars');
 const { MongoClient } = require('mongodb'); //class that comes with node.js driver for mongoDB, used for establishing connection
 
 const app = express();
+
+// Connection to URL
 const url = 'mongodb://localhost:27017';
 const client = new MongoClient(url);
 
+// Use connect method to connect to the server
 client.connect()
     .then(() => {
         console.log('DB Connected successfuly');

@@ -1,0 +1,36 @@
+If the connect() method of the MongoClient class is called directly to establish a connection to the MongoDB server, 
+this method accepts a callback function as an argument, which is executed when the connection is established. 
+The callback function is passed a client object as an argument, which can be used to perform a single operation on the database.
+
+    MongoClient.connect(url, { useNewUrlParser: true }, function(err, client) {
+    console.log("Connected successfully to server");
+    const db = client.db(dbName);
+    // Perform a single operation on the database
+    // ...
+    });
+
+!!!!the client object is only available within the callback function passed to the connect method
+!!!!If you want to reuse it in the code as a whole, you have to re-establish the connection
+
+There are a few differences between the two approaches for creating a connection to the MongoDB server:
+
+    In the first approach, you create an instance of the MongoClient class and then call 
+    the connect method on it. This allows you to store the MongoClient instance in a variable 
+    and reuse it for multiple operations. In the second approach, you call the connect 
+    method directly on the MongoClient class and pass a callback function that is executed 
+    when the connection is established. This means that you cannot reuse the connection 
+    unless you store it in a global variable or pass it as an argument to other functions.
+
+    The first approach allows you to handle the connection and any errors that may occur 
+    in a single place. This can be useful if you need to perform multiple operations on 
+    the database and want to ensure that the connection is properly closed after all the operations 
+    are completed. In the second approach, you have to handle the connection and errors separately 
+    in the callback function passed to the connect method.
+
+    The first approach allows you to use the client.close() method to close the connection 
+    when you are finished with it. In the second approach, you have to use the client.close() method 
+    on the client object passed to the callback function.
+
+Overall, the main difference between the two approaches is how you handle the connection and 
+any errors that may occur. You can choose the approach that best fits your needs and 
+the structure of your code.
