@@ -6,7 +6,7 @@ const app = express();
 
 // Connection to URL
 const url = 'mongodb://localhost:27017';
-const client = new MongoClient(url);
+const client = new MongoClient(url); //via driver take client
 
 // Use connect method to connect to the server
 client.connect()
@@ -14,8 +14,8 @@ client.connect()
         console.log('DB Connected successfuly');
     });
 
-const db = client.db('movieSuggester');
-const moviesCollection = db.collection('movies');
+const db = client.db('movieSuggester'); //via client take db
+const moviesCollection = db.collection('movies'); //via db take collection
 
 app.engine('hbs', hbs.engine({
     extname: 'hbs'
