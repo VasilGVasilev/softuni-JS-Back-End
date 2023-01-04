@@ -19,6 +19,7 @@ app.engine('hbs', hbs.engine({
 }));
 
 app.set('view engine', 'hbs');
+// no need for app.set('views', './views') config because this is the default
 
 app.get('/', (req, res) => {
     res.render('home');
