@@ -1,6 +1,6 @@
 const express = require('express');
 const hbs = require('express-handlebars');
-const { MongoClient } = require('mongodb');
+const { MongoClient } = require('mongodb'); //class that comes with node.js driver for mongoDB, used for establishing connection
 
 const app = express();
 const url = 'mongodb://localhost:27017';
