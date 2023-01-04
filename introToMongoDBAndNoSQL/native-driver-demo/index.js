@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/movies', async (req, res) => {
-    let movies = await moviesCollection.find().toArray();
+    let movies = await moviesCollection.find().toArray(); //NB returns a Promise
 
     res.render('movies', { movies })
 })
