@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 // define schema
 const movieSchema = new mongoose.Schema({
-    _id: mongoose.Types.ObjectId,
     title: {
         type: String,
         required: [true, 'Movie title is required'],
@@ -10,12 +9,6 @@ const movieSchema = new mongoose.Schema({
 
     },
     description: String,
-    genres: {
-        type: String,
-        enum: ['action', 'comedy', 'thriler', 'horror'],
-        required: false,
-    },
-    imageUrl: String,
     year: {
         type: Number,
         min: [1888, 'The year {VALUE} should not be higher than 1888'],
