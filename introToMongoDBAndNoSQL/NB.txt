@@ -15,3 +15,7 @@ than others. As your workloads evolve and data sets grow, there will be a need t
 to ensure an even distribution of load across the cluster. This uneven distribution of data is 
 addressed through shard balancing. 
 In MongoDB, this is handled automatically by the sharded cluster balancer.
+
+1:49:00 - accessing libraries from CDN 
+
+1:40:00 - mongoose automatically looks for the plural, lowercased version of your model name.
