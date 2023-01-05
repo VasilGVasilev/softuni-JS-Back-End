@@ -22,10 +22,11 @@ router.get('/', async (req, res) => {
     // -> locals, an object whose properties define local variables for the view.
 });
 
-router.get('/:movieId', async (req, res) => {
+router.get('/:movieId', async (req, res) => { //each movie is in <a href=_id>
     console.log(req.params.movieId);
+    // Movie.find({_id: req.params.movieId}).lean() -> finds all with that specific id, if find() was empty -> finds all, namely it returns all
     // let movie = await Movie.findOne({_id: req.params.movieId}).lean();
-    let movie = await Movie.findById(req.params.movieId).lean();
+    let movie = await Movie.findById(req.params.movieId).lean(); //we take that _id via req.params.movieId
 
     res.render('movieDetails', {movie})
 });
