@@ -51,6 +51,11 @@ movieSchema.virtual('isNew')
         return this.year >= 2020
     });
 
+// virtuals are like methods /non-persisting in DB/ but for properties
+// Ex. if you have firstName, lastName in DB, stupid to have fullName on DB, so just make a virtual property
+// See.          console.log(movie.isNew) in movieController.js
+// NB can have setter and getter accessories
+
 // complex validator
 movieSchema.path('title').validate(function() {
     return this.title.length >= 2 && this.title.length <= 20;
