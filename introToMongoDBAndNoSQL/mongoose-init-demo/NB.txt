@@ -5,7 +5,7 @@ when you have to use POST to save in DB:
         res.redirect('/movies');
     })
 
-MIND that Schema determines the setup so follow it with POST request exactly!
+MIND mongoose will not allow to upload data that are do not have the exactly same properties as the Model
 otherwise ->   const castError = new CastError();
                     ^
 CastError: Cast to ObjectId failed for value "create" (type string) at path "_id" for model "Movie"
