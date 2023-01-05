@@ -6,6 +6,16 @@ when you have to use POST to save in DB:
     })
 
 MIND mongoose will not allow to upload data that are do not have the exactly same properties as the Model
+IF you have set required: true =>
+const movieSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: [true, 'Movie title is required'],
+        minlength: 2,
+
+    }
+});
+
 otherwise ->   const castError = new CastError();
                     ^
 CastError: Cast to ObjectId failed for value "create" (type string) at path "_id" for model "Movie"
