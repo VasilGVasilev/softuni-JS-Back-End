@@ -1,0 +1,11 @@
+when you have to use POST to save in DB:
+    router.post('/create', async (req, res) => {
+    --->let savedMovie = await Movie.create(req.body);<---
+        console.log(savedMovie);
+        res.redirect('/movies');
+    })
+
+MIND that Schema determines the setup so follow it with POST request exactly!
+otherwise ->   const castError = new CastError();
+                    ^
+CastError: Cast to ObjectId failed for value "create" (type string) at path "_id" for model "Movie"

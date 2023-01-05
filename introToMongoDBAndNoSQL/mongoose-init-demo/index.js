@@ -1,5 +1,6 @@
 // init
-const app = require('express')();
+const express = require('express')
+const app = express();
 const hbs = require('express-handlebars');
 const mongoose = require('mongoose');
 
@@ -16,6 +17,9 @@ mongoose.connect(url)
     .catch((err)=>{
         console.log('DB Error: ', err);
     })
+
+// decode req.body with POST 
+app.use(express.urlencoded({extended:false}))
 
 // setting hbs
 app.engine('hbs', hbs.engine({
