@@ -14,3 +14,22 @@ const movies = await Movie.find().lean() to get all movies and use them in a tem
 connect to specific DB
 const url = 'mongodb://localhost:27017/movieSuggester';
 connect to a specific DB is to add name of DB to url: url += /movieSuggester
+
+
+1:49:00 - accessing libraries from CDN 
+
+Not all libraries are stored on CDNs. CDNs are used to deliver static resources, 
+such as JavaScript libraries, to users more quickly and reliably. 
+They do this by hosting the resources on servers that are distributed around the world and 
+serving them to users from a location that is physically closer to them. This can 
+significantly improve the performance of a website or web application, especially for users 
+who are located far from the origin server.
+
+However, not all libraries are suitable for hosting on CDNs. For example, 
+a library that requires access to a database or other server-side resources might not 
+be able to run entirely from a CDN. In these cases, the library would need to be installed 
+and run on the server-side, rather than being delivered to the client via a CDN.
+
+Additionally, some developers and organizations prefer to host their own libraries and other resources, 
+rather than relying on a CDN. This can give them more control over the availability and performance of the resources, 
+but it can also increase the burden on their own servers and infrastructure.
