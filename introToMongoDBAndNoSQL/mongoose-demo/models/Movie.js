@@ -42,4 +42,8 @@ const Movie = mongoose.model('Movie', movieSchema);
 
 exports.Movie = Movie;
 
+// module.exports vs exports
+// exports. is for exporting functions and values individually
+// module.exports is for exporting the whole module
+
 // db.movies.updateOne({title: 'New test movie'}, {$set: {description: 'Modified description', year: 2021}});

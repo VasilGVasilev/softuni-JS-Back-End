@@ -1,3 +1,6 @@
+// create a router attach actions to it and export it to be used in app.use(), 
+// which mounts specified middleware functions at specified path
+
 const router = require('express').Router();
 const { Movie } = require('../models/Movie');
 

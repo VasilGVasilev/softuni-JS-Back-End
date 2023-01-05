@@ -1,0 +1,6 @@
+app.use(PATH, router) is for attaching mini-app/router to a specific path
+routers are usefull for abstracting logic so that main app is not cluttered,
+
+module.exports vs exports
+exports. is for exporting functions and values individually
+module.exports is for exporting the whole module

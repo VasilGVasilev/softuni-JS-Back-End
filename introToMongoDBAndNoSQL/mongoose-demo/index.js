@@ -27,5 +27,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/movies', movieController);
+// NB routers a mini-apps that abstract a piece of the logic so that it does not clutter the main app
+// /movies path has a few options so it is best to move it into a separate controller
 
 app.listen(5000, () => console.log('Server is listening on port 5000...'));
