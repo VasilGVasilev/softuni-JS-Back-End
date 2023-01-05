@@ -6,6 +6,7 @@ const movieController = require('./controllers/movieController');
 
 const app = express();
 const url = 'mongodb://localhost:27017/movieSuggester';
+// connect to a specific DB is to add name of DB to url: url += /movieSuggester
 
 mongoose.connect(url)
     .then(() => {

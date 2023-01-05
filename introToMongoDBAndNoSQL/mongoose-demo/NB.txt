@@ -3,4 +3,14 @@ routers are usefull for abstracting logic so that main app is not cluttered,
 
 module.exports vs exports
 exports. is for exporting functions and values individually
-module.exports is for exporting the whole module
+module.exports is (default export) for exporting the whole module
+
+Mongoose is preferred because it provides SQL-like schema or model,
+this model is setting what Mongoose should expect
+
+Extract model from DB and attach to template
+const movies = await Movie.find().lean() to get all movies and use them in a template res.render()
+
+connect to specific DB
+const url = 'mongodb://localhost:27017/movieSuggester';
+connect to a specific DB is to add name of DB to url: url += /movieSuggester

@@ -6,13 +6,20 @@ const { Movie } = require('../models/Movie');
 
 router.get('/', async (req, res) => {
     const movies = await Movie.find().lean();
+    // model is a promise
+    // the model movie is not only class like in OOP but it allows you to access the whole
+    // DB .find() is to show cursor (like a bookmark, it does not give all info, but only specific)
+    // solution is .lean()
 
     // movies.forEach(movie => {
     //     console.log(movie.getInfo());
     //     console.log(movie.isNew);
     // });
 
-    res.render('movies', { movies });
+    res.render('movies', { movies }); 
+    // res.render(view [, locals] [, callback])
+    // Renders a view and sends the rendered HTML string to the client. Optional parameters:
+    // -> locals, an object whose properties define local variables for the view.
 });
 
 router.get('/:movieId', async (req, res) => {

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// SQL good practice -  enforcing schema that DB is based on, signature for Mongoose
 const movieSchema = new mongoose.Schema({
     _id: mongoose.Types.ObjectId,
     title: {
