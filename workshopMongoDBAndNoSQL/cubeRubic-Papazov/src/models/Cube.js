@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const cubeSchema = new mongoose.Schema({
+    // id is set by mongoose by default
     name: {
         type: String,
         required: true,

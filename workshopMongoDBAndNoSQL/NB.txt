@@ -1,0 +1,3 @@
+No need to use MongoDBCompass to set the new DB and collections
+Creating a Mongoose Schema, connecting it and making a POST request will upload the whole DB structure ->
+collections even documents if you used the POST request functionlaity to create cubes
