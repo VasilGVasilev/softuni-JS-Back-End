@@ -31,6 +31,7 @@ const cubeSchema = new mongoose.Schema({
 
 // description uses in-build max-length validation
 // imageUrl uses more complex validation 
+// see Accessory model for built-in validator 
 cubeSchema.path('imageUrl').validate(function() {
     return this.imageUrl.startsWith('http');
 }, 'Image url should be a link');
