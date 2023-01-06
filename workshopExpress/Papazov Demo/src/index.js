@@ -4,7 +4,7 @@ const routes = require('./routes');
 const app = express();
 
 // for html link css
-app.use('/static', express.static('public'));
+app.use('/static', express.static('public')); // main.hbs has css, favicon and logo all with root /static, you direct them to public dir for source
 
 // for reading the req.body of POST request
 app.use(express.urlencoded({extended: false})); 
