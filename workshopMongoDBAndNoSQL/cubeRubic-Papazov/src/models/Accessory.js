@@ -5,6 +5,7 @@ const accessorySchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    // see Accessory model for built-in validator 
     imageUrl: {
         type: String,
         required: true,
