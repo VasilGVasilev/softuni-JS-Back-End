@@ -19,6 +19,7 @@ const cubeSchema = new mongoose.Schema({
         required: true,
         min: 1,
         max: 6,
+        // unique is a special validator that has also optimised searching based on indices
     },
     accessories: [
         {
@@ -28,6 +29,8 @@ const cubeSchema = new mongoose.Schema({
     ]
 });
 
+// description uses in-build max-length validation
+// imageUrl uses more complex validation 
 cubeSchema.path('imageUrl').validate(function() {
     return this.imageUrl.startsWith('http');
 }, 'Image url should be a link');
