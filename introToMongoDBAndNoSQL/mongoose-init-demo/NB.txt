@@ -5,7 +5,10 @@ when you have to use POST to save in DB:
         res.redirect('/movies');
     })
 
-MIND mongoose will not allow to upload data that are do not have the exactly same properties as the Model
+MIND mongoose tolerates flexibility:
+- it will save more fields in a newly created document /.save() or .create()/
+- it will save only title even if title out of (title, desc, year per Schema) is saved, neglecting the absence of the other two example fields
+- it will, however, require as obligatory a field if required option in Schema is set to true, otherwise -> error msg
 IF you have set required: true =>
 const movieSchema = new mongoose.Schema({
     title: {
