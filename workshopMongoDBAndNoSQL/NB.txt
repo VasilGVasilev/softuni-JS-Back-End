@@ -1,3 +1,28 @@
 No need to use MongoDBCompass to set the new DB and collections
 Creating a Mongoose Schema, connecting it and making a POST request will upload the whole DB structure ->
 collections even documents if you used the POST request functionlaity to create cubes
+
+
+ An async function returns a Promise.
+
+ The value of the Promise depends on how the async function is written. 
+ If the async function returns a value, the Promise will be resolved 
+ with that value. If the async function throws an error, the Promise 
+ will be rejected with that error.
+
+ Here is an example of an async function that returns a value:
+
+ async function getData() {
+   return 'Hello, World!';
+ }
+
+ getData().then((value) => {
+   console.log(value);  // "Hello, World!"
+ });
+
+ thus, when you extract DB via cubeService.getAll() and return cubes
+ the returned cube is just a return of the async function cubeService.getAll()
+ -> in homeController cubeService.getAll() requires await so that as promise it is resolved
+
+ When having intermodular communication, have in mind that async functions return promises 
+ which should be resolved even if the very async function executed awaits a promise within itself.

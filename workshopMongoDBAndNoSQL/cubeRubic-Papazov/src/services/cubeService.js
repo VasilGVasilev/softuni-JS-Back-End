@@ -16,6 +16,7 @@ exports.getAll = async (search = '', fromInput, toInput) => {
     //     },
     // ).lean();
     
+    // find in DB and return 
     let cubes = await Cube.find({name: { $regex: new RegExp(search, 'i') }})
         .where('difficultyLevel').lte(to).gte(from)
         .lean();
