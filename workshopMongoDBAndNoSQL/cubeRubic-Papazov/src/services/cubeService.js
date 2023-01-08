@@ -34,6 +34,7 @@ exports.getOneDetails = (cubeId) => Cube.findById(cubeId).populate('accessories'
 // with .populate()
 // >> accessroies field has the fields of that particluar object, in this case the accessory's name, description, imageUrl
 
+// Deep populate
 // Nested population
 // .populate({
 //     path: 'accessories',
