@@ -26,6 +26,7 @@ exports.getAll = async (search = '', fromInput, toInput) => {
 
 exports.getOne = (cubeId) => Cube.findById(cubeId);
 
+// NB in order for Cube to have accessories array when displaying, thus, it is necessary not only to set the ref in the Schema
 exports.getOneDetails = (cubeId) => Cube.findById(cubeId).populate('accessories');
 
 // Nested population
