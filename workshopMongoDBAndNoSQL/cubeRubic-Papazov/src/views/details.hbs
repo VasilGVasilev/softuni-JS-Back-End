@@ -12,7 +12,7 @@
     
     {{#each cube.accessories}}
       {{> accessory}}
-    {{else}}
+    {{else}} {{!-- like x : this ? that     if cube.accessories is true then >accessory else <h3></h3>--}}
       <h3 class="italic">This cube has no accessories yet...</h3>
     {{/each}}
 
