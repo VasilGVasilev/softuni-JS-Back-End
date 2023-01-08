@@ -50,3 +50,7 @@ In attach.hbs
 </select>
 
 is how we specify which option is selected and thus the accessories._id that will be used in post request
+
+
+A possible bug is that we can add accessories twice in one cube, this can be solved with better transaction,
+Note that each accessory that is added to cube array actually updates the __v:+1
