@@ -26,3 +26,10 @@ collections even documents if you used the POST request functionlaity to create 
 
  When having intermodular communication, have in mind that async functions return promises 
  which should be resolved even if the very async function executed awaits a promise within itself.
+
+
+ 2:00:00 
+ Relations
+    if it is an array, it is many to many, if it one object its obvious that only one relation is possible
+    the 'type' has to be set to be OBJECT>ID
+    the 'ref' has to be set to the relevant model 
