@@ -33,6 +33,7 @@ router.get('/details/:id', async (req, res) => {
 });
 
 router.get('/:cubeId/attach-accessory', async (req, res) => {
+    // you can take data from two different services, the problem is if you make it a circular dependency controller takes from one service, one service takes from another, another service relies on intiial controller
     const cube = await cubeService.getOne(req.params.cubeId).lean();
     const accessories = await accessoryService.getAllAvailable(cube.accessories).lean();
     

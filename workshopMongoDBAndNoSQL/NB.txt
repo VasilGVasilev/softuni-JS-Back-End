@@ -33,3 +33,10 @@ collections even documents if you used the POST request functionlaity to create 
     if it is an array, it is many to many, if it one object its obvious that only one relation is possible
     the 'type' has to be set to be OBJECT>ID
     the 'ref' has to be set to the relevant model 
+
+Interesting bug when trying to attach an accessory to cubes
+  Cubes that do not comply with the Schema
+  Cube Schema required:true for description
+  but manually set cubes that did not have description are tolerated
+  BUT when you try to attach Accessory to Cube, the Cube Schema validation is obligatory
+  => ValidationError: Cube validation failed: description: Path `description` is required.
