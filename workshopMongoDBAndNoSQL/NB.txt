@@ -40,3 +40,13 @@ Interesting bug when trying to attach an accessory to cubes
   but manually set cubes that did not have description are tolerated
   BUT when you try to attach Accessory to Cube, the Cube Schema validation is obligatory
   => ValidationError: Cube validation failed: description: Path `description` is required.
+
+In attach.hbs
+
+<select id="accessory" name="accessory" />
+  {{#each accessories}}
+    <option value="{{_id}}">{{name}}</option>
+  {{/each}}
+</select>
+
+is how we specify which option is selected and thus the accessories._id that will be used in post request
