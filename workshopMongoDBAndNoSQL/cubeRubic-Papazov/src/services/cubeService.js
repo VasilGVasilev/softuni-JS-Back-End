@@ -29,6 +29,11 @@ exports.getOne = (cubeId) => Cube.findById(cubeId);
 // NB in order for Cube to have accessories array when displaying, thus, it is necessary not only to set the ref in the Schema
 exports.getOneDetails = (cubeId) => Cube.findById(cubeId).populate('accessories');
 
+// without .populate() ->
+// >> accessories field as an object with ObjectId
+// with .populate()
+// >> accessroies field has the fields of that particluar object, in this case the accessory's name, description, imageUrl
+
 // Nested population
 // .populate({
 //     path: 'accessories',
