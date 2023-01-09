@@ -1,0 +1,5 @@
+see user authentication in softuni advanced 
+
+3:19:00 cookies vs session, cookies are not safe, it can be hijacked, but session hijack is a risk, too 
+
+
