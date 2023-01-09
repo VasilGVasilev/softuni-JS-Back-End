@@ -3,6 +3,16 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+// on bcrypt hashing
+// When a person first creates a password, only the hashed version of it is stored 
+// (along with something called a ‘salt’, but we’ll skip that for this discussion).
+
+// The next time the person logs in, the password they supply will be hashed again and 
+// compared with the original hash the site stored. If they match, access is granted.
+
+// If you supply the hash as the password, the hash itself will be hashed again, and 
+// that rehash will not match. Access will not be granted.
+
 const app = express();
 const hashedPassword = '$2b$10$V32sjm5vBHJt1Uq4ERXpieszKwdxOcIpWB.UDqRkzF6VFtYg9xcV6';
 const saltRounds = 15;
