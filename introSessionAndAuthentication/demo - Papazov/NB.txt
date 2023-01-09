@@ -1,5 +1,11 @@
 see user authentication in softuni advanced 
 
-3:19:00 cookies vs session, cookies are not safe, it can be hijacked, but session hijack is a risk, too 
+3:19:00 
+cookies vs session, cookies are not safe, it can be hijacked, but session hijack is a risk, too 
 
+2:50:00
+the server uses expressSession to create this cookie that is cryptically set on browser via cookieId
+so that the server will know in the future what info to show to this particular user referencing the specific cookieId
+Thus, ensuring that the cryptic cookie is the only identificator known to the browser, while the data is saved on server/DB 
+and the connection and respective identification is done by this interplay of cookie on browser and session on server
 
