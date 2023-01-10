@@ -15,7 +15,7 @@ const jwt = require('jsonwebtoken');
 
 const app = express();
 const hashedPassword = '$2b$10$V32sjm5vBHJt1Uq4ERXpieszKwdxOcIpWB.UDqRkzF6VFtYg9xcV6';
-const saltRounds = 15;
+const saltRounds = 15; //you can change salt rounds in future if cpu/ram increase and 15 makes it more prone to brute force attacks
 const secret = 'Mysupersecretsecret';
 
 app.use(cookieParser());
@@ -23,6 +23,11 @@ app.use(cookieParser());
 app.get('/hash/:password?', async (req, res) => {
     const salt = await bcrypt.genSalt(saltRounds);
     const hash = await bcrypt.hash(req.params.password, salt);
+    // bcrypt adds salt, thus, salt + hash changes the whole resulted hash, but also the hash, separate from salt,
+    // if you set 12345, it will have two different result hashes
+    // BUT bcrypt is smart enough to remove salt, reverse the effect of the altering effect of the salt and
+    // compare the original password if necessary, although we know that the whole logic is that
+    // hashing is supposed to have the same result over a string so that 123 is XYZ and then you check for XYZ
 
     console.log('Salt:', salt);
     console.log('hash:', hash);
