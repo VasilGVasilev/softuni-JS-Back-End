@@ -21,7 +21,7 @@ const secret = 'Mysupersecretsecret';
 app.use(cookieParser());
 
 app.get('/hash/:password?', async (req, res) => {
-    const salt = await bcrypt.genSalt(saltRounds);
+    const salt = await bcrypt.genSalt(saltRounds); //async so that server is not blocked for other users
     const hash = await bcrypt.hash(req.params.password, salt);
 
     // Salt is a way to tackle rainbow where most passwords are displayed when usign popular hashes
