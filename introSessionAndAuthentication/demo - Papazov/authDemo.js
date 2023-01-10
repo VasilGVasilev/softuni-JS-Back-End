@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 
 // cookies are usually perferred for one client one browser
 // JWT is for one client many servers -> Single SignOn, one token 'to rule them all'
+// its like a unique ceritificate that validates you
 
 // on bcrypt hashing
 // When a person first creates a password, only the hashed version of it is stored 
