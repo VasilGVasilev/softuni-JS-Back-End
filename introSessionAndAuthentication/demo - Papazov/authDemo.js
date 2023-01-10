@@ -14,6 +14,7 @@ const jwt = require('jsonwebtoken');
 // that rehash will not match. Access will not be granted.
 
 const app = express();
+// const password = 'mysecretpassword'
 const hashedPassword = '$2b$10$V32sjm5vBHJt1Uq4ERXpieszKwdxOcIpWB.UDqRkzF6VFtYg9xcV6';
 const saltRounds = 15; //you can change salt rounds in future if cpu/ram increase and 15 makes it more prone to brute force attacks
 const secret = 'Mysupersecretsecret';
