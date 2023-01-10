@@ -54,10 +54,14 @@ app.get('/hash/:password?', async (req, res) => {
 app.get('/login/:password', async (req, res) => {
     const isValidPassword = await bcrypt.compare(req.params.password, hashedPassword);
 
+    // validation is not part of JWT, it as softuni validating your skills is separate from
+    // simply, giving you a certificate to use as a unique token that can then be verified via softuni
     if (isValidPassword) {
+        // creating JWT
         const payload = {
             username: 'Pesho'
         };
+        // secret, to verify token
         const options = { expiresIn: '2d' };
         const token = jwt.sign(payload, secret, options);
 
