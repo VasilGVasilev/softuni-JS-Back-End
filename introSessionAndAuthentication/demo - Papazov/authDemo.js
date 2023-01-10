@@ -66,6 +66,7 @@ app.get('/login/:password', async (req, res) => {
         const token = jwt.sign(payload, secret, options);
 
         res.send(token);
+        // you can verify signature on jwt.io
     } else {
         res.send('Invalid Password');
     }
