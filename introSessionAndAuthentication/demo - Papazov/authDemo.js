@@ -23,6 +23,9 @@ app.use(cookieParser());
 app.get('/hash/:password?', async (req, res) => {
     const salt = await bcrypt.genSalt(saltRounds);
     const hash = await bcrypt.hash(req.params.password, salt);
+
+    // Salt is a way to tackle rainbow where most passwords are displayed when usign popular hashes
+
     // bcrypt adds salt, thus, salt + hash changes the whole resulted hash, but also the hash, separate from salt,
     // if you set 12345, it will have two different result hashes
     // BUT bcrypt is smart enough to remove salt, reverse the effect of the altering effect of the salt and
