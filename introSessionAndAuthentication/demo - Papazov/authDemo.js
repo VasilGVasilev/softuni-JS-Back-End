@@ -3,6 +3,9 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+// cookies are usually perferred for one client one browser
+// JWT is for one client many servers -> Single SignOn, one token 'to rule them all'
+
 // on bcrypt hashing
 // When a person first creates a password, only the hashed version of it is stored 
 // (along with something called a ‘salt’, but we’ll skip that for this discussion).
