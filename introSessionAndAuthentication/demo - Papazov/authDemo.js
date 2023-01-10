@@ -29,6 +29,11 @@ app.get('/hash/:password?', async (req, res) => {
     // compare the original password if necessary, although we know that the whole logic is that
     // hashing is supposed to have the same result over a string so that 123 is XYZ and then you check for XYZ
 
+    // Recap 
+    // string -> hash
+    // string + hash -> saltedHash
+    // saltedHash <- salt + hash (when comparing, thus, salted hash is different everytime, due to salt changing, but original hash is same)
+
     console.log('Salt:', salt);
     console.log('hash:', hash);
     res.send(hash);
