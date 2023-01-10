@@ -74,6 +74,7 @@ app.get('/login/:password', async (req, res) => {
 
 //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBlc2hvIiwiaWF0IjoxNjU0NTM2NzY1LCJleHAiOjE2NTQ3MDk1NjV9.IpwOKCkBcebrYctYY1aXJb8NwF4GIpWRcusruE_08ME
 app.get('/verify/:token', (req, res) => {
+    // jwt uses callbacks, not promises, thus, the (err,decodedToken)
     jwt.verify(req.params.token, secret, (err, decodedToken) => {
         if (err) {
             return res.status(401).send('You don\'t have permissions')
