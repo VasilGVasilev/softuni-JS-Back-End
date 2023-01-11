@@ -20,7 +20,7 @@ app.engine('hbs', hbs.engine({
 app.set('view engine', 'hbs');
 
 app.get('/', (req, res) => {
-    let token = req.cookies['session'];
+    let token = req.cookies['session']; //this is readable only due to app.use(cookieParser()) above
 
     if (token) {
         jwt.verify(token, secret, (err, decodedToken) => {
@@ -46,13 +46,17 @@ app.post('/register', async (req, res) => {
         res.status(400).send('User allready exists');
     }
 
-    const hash = await bcrypt.hash(password, saltRounds);
+    const hash = await bcrypt.hash(password, saltRounds); //bcrypt.hash(password, salt string || saltRounds number) thus, you can let bcrypt generate its salt alone
+    // instead of const salt = await bcrypt.genSalt(saltRounds); const hash = await bcrypt.hash(req.params.password, salt);
     userSessions[email] = {
         email,
         password: hash
     }
 
     res.redirect('/login');
+    // where the set hash will be validated:
+        // await bcrypt.hash(password, saltRounds);
+        // await bcrypt.compare(password, userSessions[email].password);
 });
 
 app.get('/login', (req, res) => {
@@ -65,8 +69,7 @@ app.post('/login', async (req, res) => {
     const isAuthenticated = await bcrypt.compare(password, userSessions[email].password);
 
     if (isAuthenticated) {
-        const token = jwt.sign({ email }, secret, { expiresIn: '2d' });
-
+        const token = jwt.sign({ email }, secret, { expiresIn: '2d' }); //email has to be in an object if you are to set option expiresIn, too, since it has to be an object likewise
         res.cookie('session', token, { httpOnly: true });
         res.redirect('/');
     } else {
@@ -75,3 +78,12 @@ app.post('/login', async (req, res) => {
 });
 
 app.listen(5000, () => console.log('Server is listening on port 5000...'));
+
+// logic
+// in register set hashed password into userSessions via bcrypt
+// in login compare the input with the hash password via bcrypt
+// in login if authenticated == true, set a token via jwt.sign(email, secret)
+// in login set the token as a value in Storage -> Cookies -> localhost via res.cookie
+// in /home set the req.cookies['session'] that stores the token in a new token var
+// in /home verify token via jwt(token, secret, callback(err, decodedToken))
+// NB jwt uses callbacks

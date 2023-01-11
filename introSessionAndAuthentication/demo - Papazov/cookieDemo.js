@@ -3,7 +3,7 @@ const cookieParser = require('cookie-parser');
 
 const app = express();
 
-// middleware that is for every request
+// middleware that is for every request so that you can read req.cookies in app.get() below
 app.use(cookieParser());
 
 app.get('/', (req, res) => {
