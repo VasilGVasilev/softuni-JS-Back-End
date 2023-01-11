@@ -19,7 +19,9 @@ app.engine('hbs', hbs.engine({
 
 app.set('view engine', 'hbs');
 
-app.get('/', (req, res) => {
+// my middleware for token verification with closure
+let greeting;
+app.use((req, res, next) => {
     let token = req.cookies['session']; //this is readable only due to app.use(cookieParser()) above
 
     if (token) {
@@ -27,12 +29,18 @@ app.get('/', (req, res) => {
             if (err) {
                 return res.status(401).send('Invalid token')
             }
-
-            res.render('home', { email: decodedToken.email });
+            greeting = decodedToken.email;
         });
     } else {
-        res.render('home', { email: 'Guest' });
+        greeting = 'Guest';  
     }
+    next()
+})
+    
+
+app.get('/', (req, res) => {
+    console.log(greeting);
+    res.render('home', { greeting });
 });
 
 app.get('/register', (req, res) => {
@@ -70,7 +78,7 @@ app.post('/login', async (req, res) => {
 
     if (isAuthenticated) {
         const token = jwt.sign({ email }, secret, { expiresIn: '2d' }); //email has to be in an object if you are to set option expiresIn, too, since it has to be an object likewise
-        res.cookie('session', token, { httpOnly: true });
+        res.cookie('session', token, { httpOnly: true }); //client cannot session highjack, and is possible via setting an arg in app.use(cookieParser('', {}));
         res.redirect('/');
     } else {
         res.status(401).send('Wrong username or password');
