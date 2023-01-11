@@ -39,7 +39,6 @@ app.use((req, res, next) => {
     
 
 app.get('/', (req, res) => {
-    console.log(greeting);
     res.render('home', { greeting });
 });
 
