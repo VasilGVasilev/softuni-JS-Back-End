@@ -25,6 +25,22 @@ app.use('/static', express.static('public'))
 
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser('', {}));
+
+// app.use((req, res, next) => {
+//     let token = req.cookies['session'];
+//     if (token) {
+//         jwt.verify(token, secret, (err, decodeToken) => {
+//             if (err){
+//                 return res.status(401).send('Invalid token')
+//             }
+//             {{{body}}} with guest navbar
+//         })
+//     } else {
+//         {{{body}}} with logged-in user navbar
+//     }
+//     next();
+// })
+
 app.use(routes);
 
 // first start DB then start server
