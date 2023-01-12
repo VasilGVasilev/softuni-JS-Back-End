@@ -7,7 +7,14 @@ const app = express();
 // attach hbs by inputting app in this function that returns the hbs require()(app)
 require('./config/handlebars')(app);
 
-app.use('/static', express.static('public'));
+
+// To create a virtual path prefix (where the path does not actually exist in the 
+// file system) for files that are served by the express.static function, specify a 
+// mount path for the static directory, as shown below:
+app.use('/static', express.static('public'))
+// Now, you can load the files that are in the public directory from the /static path prefix.
+
+
 app.use(express.urlencoded({ extended: false }));
 app.use(routes);
 
