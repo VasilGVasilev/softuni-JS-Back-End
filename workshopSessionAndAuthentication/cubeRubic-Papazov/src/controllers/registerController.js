@@ -1,3 +1,5 @@
+// regsiter user and hashed pass
+
 const router = require('express').Router();
 const userSession = require('../data/db');
 const bcrypt = require('bcrypt');

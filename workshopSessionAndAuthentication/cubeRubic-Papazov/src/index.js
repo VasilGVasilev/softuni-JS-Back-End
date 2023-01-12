@@ -1,5 +1,5 @@
-// [ ] add routes and controllers for login and register
-// [ ] create tokenization
+// [x] add routes and controllers for login and register
+// [x] create tokenization
 // [ ] check if there is token for dynamic navbar
 // ----------------------------------------
 // [ ] User model add by watching lecture
@@ -10,6 +10,7 @@ const express = require('express');
 const { initializeDatabase } = require('./config/database');
 const routes = require('./routes');
 const app = express();
+const cookieParser = require('cookie-parser')
 
 // attach hbs by inputting app in this function that returns the hbs require()(app)
 require('./config/handlebars')(app);
@@ -23,6 +24,7 @@ app.use('/static', express.static('public'))
 
 
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser('', {}));
 app.use(routes);
 
 // first start DB then start server

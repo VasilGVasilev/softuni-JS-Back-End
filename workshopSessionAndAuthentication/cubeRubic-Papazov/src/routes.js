@@ -12,7 +12,7 @@ const router = express.Router();
 router.use('/', homeController);
 router.use('/cube', cubeController);
 router.use('/accessory', accessoryController);
-// router.use('/login', loginController);
+router.use('/login', loginController);
 router.use('/register', registerController);
 
 module.exports = router;
