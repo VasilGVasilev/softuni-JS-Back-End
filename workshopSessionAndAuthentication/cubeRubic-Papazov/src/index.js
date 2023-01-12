@@ -1,3 +1,10 @@
+// [ ] add routes and controllers for login and register
+// [ ] create tokenization
+// [ ] check if there is token for dynamic navbar
+// ----------------------------------------
+// [ ] User model add by watching lecture
+// [ ] add edit and delete via detials link
+
 const express = require('express');
 
 const { initializeDatabase } = require('./config/database');
