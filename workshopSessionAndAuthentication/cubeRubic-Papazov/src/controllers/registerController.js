@@ -1,17 +1,28 @@
-// const router = require('express').Router();
-// const cubeService = require('../services/cubeService');
+const router = require('express').Router();
+const userSession = require('../data/db');
+const bcrypt = require('bcrypt');
 
-// router.get('/register', async (req, res) => {
-//     let { search, from, to } = req.query;
+const saltRounds = 15;
 
-//     // cubeService.getAll() is an async function, thus, its return is wrapped in a Promise -> cubeService.getAll(search, from, to) is a promise => await cubeService.getAll()
-//     const cubes = await cubeService.getAll(search, from, to);
+router.get('/', (req, res) => {
+    res.render('register');
+});
 
-//     res.render('index', { cubes, search, from, to });
-// });
+router.post('/', async (req, res) => {
+    let { username, password } = req.body
 
-// router.get('/register', (req, res) => {
-//     res.render('about');
-// });
+    if(userSession[username]){
+        res.status(400).send('User already exists')
+    }
+    const hash = await bcrypt.hash(password, saltRounds);
 
-// module.exports = router;
+    userSession[username] = {
+        username,
+        hash
+    }
+    res.redirect('/login')
+    
+});
+
+
+module.exports = router;
