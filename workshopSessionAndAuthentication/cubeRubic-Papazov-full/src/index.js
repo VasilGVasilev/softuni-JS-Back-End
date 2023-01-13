@@ -16,8 +16,8 @@ app.use(auth);
 app.use(routes);
 app.use(errorHandler);
 
-initializeDatabase()
-    .then(() => {
+initializeDatabase() //mongoose.connect(url) returns a promise
+    .then(() => { //if connection is established to DB, resolve promise by listening to server
         app.listen(5000, () => console.log(`App is listening on port 5000`));
     })
     .catch((err) => {
