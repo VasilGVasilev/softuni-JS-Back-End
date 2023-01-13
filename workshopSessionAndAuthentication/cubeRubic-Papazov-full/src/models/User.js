@@ -21,8 +21,8 @@ const userSchema = new mongoose.Schema({ //define new Schema
     },
 });
 
-userSchema.virtual('repeatPassword').set(function(value) {
-    if (this.password !== value) {
+userSchema.virtual('repeatPassword').set(function(value) { //not all properties need to be persisted in DB
+    if (this.password !== value) { // example of using (getter) and SETTER for validation like said in JS Advanced
         throw new Error('Repeat password should match password');
     }
 });
