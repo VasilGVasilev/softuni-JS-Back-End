@@ -1,11 +1,11 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); //set up mongoose
 
 const { secret, saltRounds } = require('../constants');
 
 
-const userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({ //define new Schema
     username: {
         type: String,
         required: [true, 'Username is required'],
@@ -37,6 +37,6 @@ userSchema.pre('save', function(next) {
 });
 
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema); //create the defined above schema template in DB under name User -> collection users
 
 module.exports = User;
