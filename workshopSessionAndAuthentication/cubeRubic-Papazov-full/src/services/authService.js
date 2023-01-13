@@ -27,19 +27,20 @@ exports.register = async ({ username, password, repeatPassword }) => {
 
     // let createdUser = new User({
     //     username,
-    //     password: hashedPassword,
+    //     password: hashedPassword, 
     // });
 
     // createdUser.save();
 };
 
 exports.login = async ({ username, password }) => {
-    let user = await User.findOne({ username });
+    let user = await User.findOne({ username }); //.find() would return []
 
+    // validation 
     if (!user) {
         // TODO: add message
-        return;
-    }
+        return; //intuitively, res.redirect() BUT comply with architecure, no res, req in service; this returns undefined
+    } //token in authController will be undefined, thus,         if (!token) => return res.redirect('/404')
 
     const isValid = await bcrypt.compare(password, user.password);
 
