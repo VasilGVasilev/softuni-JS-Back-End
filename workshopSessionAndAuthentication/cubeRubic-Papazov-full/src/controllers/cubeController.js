@@ -69,7 +69,7 @@ router.post('/:cubeId/attach-accessory', async (req, res) => {
 router.get('/:cubeId/edit', isAuth, async (req, res) => {
     const cube = await cubeService.getOne(req.params.cubeId).lean()
 
-    if (cube.owner != req.user._id) {
+    if (cube.owner != req.user._id) { //req.user we have attached the decodedToken to it, namely, (_id: user._id, username: user.username)
         // TODO Add message
         return res.redirect('/404');
     }
