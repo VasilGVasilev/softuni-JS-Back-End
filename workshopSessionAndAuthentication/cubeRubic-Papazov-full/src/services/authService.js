@@ -75,6 +75,10 @@ exports.login = async ({ username, password }) => {
         });
     });
 
+    // another way is:
+    // const { promisify } = require('util'); 
+    // const jwtPromiseSign = promisify(jwt.sign)
+    // jwtPromiseSign(args)
     return result;
 };
 
