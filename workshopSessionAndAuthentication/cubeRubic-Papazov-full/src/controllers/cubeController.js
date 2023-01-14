@@ -34,8 +34,10 @@ router.post(
 
         // Save data
         try {
-            await cubeService.create(cube);
+            await cubeService.create(cube); //cube is the combined result of cube by req.body and req.user._id
+            // the latter being set in auth authMiddleware -> req.user = decodedToken; to carry on as stored variable with each request
 
+            // see User model
             res.redirect('/');
         } catch (error) {
             console.log(error);
@@ -45,8 +47,10 @@ router.post(
 );
 
 router.get('/details/:id', async (req, res) => {
+    
     const cube = await cubeService.getOneDetails(req.params.id).lean();
     const isOwner = cube.owner == req.user?._id;
+
 
     res.render('details', { cube, isOwner });
 });

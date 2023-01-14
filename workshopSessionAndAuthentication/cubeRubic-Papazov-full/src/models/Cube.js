@@ -29,7 +29,7 @@ const cubeSchema = new mongoose.Schema({
     owner: {
         type: mongoose.Types.ObjectId,
         ref: 'User'
-    }
+    } // if coming from cubeController create cube, note that the user.owner is set so that a relation for ownership of cube is possible
 });
 
 cubeSchema.path('imageUrl').validate(function() {
