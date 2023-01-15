@@ -15,11 +15,13 @@ exports.auth = async (req, res, next) => {
 
 
             req.user = decodedToken; //attached to request so that later actions after middleware can access it
-            res.locals.user = decodedToken; // like app.locals below BUT it is per request => so per user, too
+            res.locals.user = decodedToken; // attaches user var to each request so real time check if there is token or not and whose is it
+
             // MAKES ADDED PROPERTIES (here, user) AVAILABLE THROUGHOUT THE APP -> in templates, too
                 // Use this property to set variables accessible in templates rendered with res.render. 
                 // The variables set on res.locals are available within a single request-response cycle, 
                 // and will not be shared between requests.
+                // like app.locals below BUT it is per request => so per user, too
             
             // The "app.locals" object has properties that are local variables within the application. 
             // These variables are local to the application and are very useful.
