@@ -50,7 +50,7 @@ router.post('/login', async (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
-    res.clearCookie(sessionName);
+    res.clearCookie(sessionName); //simply remove cookie with token, thus, the app will treat the user as a guest
     res.redirect('/');
 });
 
