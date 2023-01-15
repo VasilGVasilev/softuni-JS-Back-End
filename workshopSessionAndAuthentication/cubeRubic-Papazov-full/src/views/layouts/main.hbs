@@ -12,6 +12,11 @@
     <div class="container">
         <header>
             <ul> 
+                {{#if user}}
+                <li>Welcome, {{user.username}}</li>
+                {{else}}
+                <li>Welcome, guest</li>
+                {{/if}}
                 <li><img class="logo" src="/static/images/logo.png"></li>
                 <li><a href="/">Browse</a></li>
                 <li><a href="/about">About</a></li>

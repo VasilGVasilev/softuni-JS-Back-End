@@ -13,8 +13,17 @@ exports.auth = async (req, res, next) => {
         try {
             let decodedToken = await jwtVerify(token, secret);
 
+
             req.user = decodedToken; //attached to request so that later actions after middleware can access it
-            res.locals.user = decodedToken;
+            res.locals.user = decodedToken; // like app.locals below BUT it is per request => so per user, too
+            // MAKES ADDED PROPERTIES (here, user) AVAILABLE THROUGHOUT THE APP -> in templates, too
+                // Use this property to set variables accessible in templates rendered with res.render. 
+                // The variables set on res.locals are available within a single request-response cycle, 
+                // and will not be shared between requests.
+            
+            // The "app.locals" object has properties that are local variables within the application. 
+            // These variables are local to the application and are very useful.
+            // It is the same for all users, so cannot be used per user experience, it is useful for all users
         } catch(err) {
             console.log(err);
             return res.redirect('/404');
