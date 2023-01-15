@@ -16,9 +16,9 @@ router.post(
     body('description').isLength({min: 5, max: 120}),
     body('difficultyLevel', 'Difficulty Level is required to be in range 1 to 6').toInt().isInt({min: 1, max: 6}),
     async (req, res) => {
-        const cube = req.body;
+        const cube = req.body; //extract info in variable cube
 
-        cube.owner = req.user._id;
+        cube.owner = req.user._id; //add one more property by using the req.user (provided by app.use(auth))
 
         const errors = validationResult(req);
 
@@ -78,7 +78,7 @@ router.get('/:cubeId/edit', isAuth, async (req, res) => {
         return res.redirect('/404');
     }
 
-    cube[`difficultyLevel${cube.difficultyLevel}`] = true;
+    cube[`difficultyLevel${cube.difficultyLevel}`] = true; //hack solution to generating selected option
 
     if (!cube) {
         return res.redirect('/404');
