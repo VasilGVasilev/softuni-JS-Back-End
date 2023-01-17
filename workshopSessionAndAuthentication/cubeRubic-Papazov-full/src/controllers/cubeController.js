@@ -19,7 +19,7 @@ router.post(
     isAuth,
     body('name', 'Name is required!').not().isEmpty(), // (1)
     body('description').isLength({min: 5, max: 120}), // (1)
-    body('difficultyLevel', 'Difficulty Level is required to be in range 1 to 6').toInt().isInt({min: 1, max: 6}),
+    body('difficultyLevel', 'Difficulty Level is required to be in range 1 to 6').toInt().isInt({min: 1, max: 6}), //.toInt() is sanitizer, formally no difference between santizer and validator, but .isInt() changes the data from string to integer
     async (req, res) => {
         const cube = req.body; //extract info in variable cube
 
@@ -50,6 +50,15 @@ router.post(
         }
     }
 );
+
+// custom Sanitizer 
+    // const { sanitizeParam } = require('express-validator');
+
+    // router.post('object/:id', sanitizeParam('id').customSanitizer(value => {
+    //     return isObjectIdOrHexString(value);
+    // }), (req, res) => {
+    //     // Handle request...
+    // })
 
 router.get('/details/:id', async (req, res) => {
     
