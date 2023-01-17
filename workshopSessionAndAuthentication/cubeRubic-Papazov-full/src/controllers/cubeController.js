@@ -9,20 +9,25 @@ router.get('/create', isAuth, (req, res) => {
     res.render('create');
 });
 
+// express-validator works so:
+    // (1) put in validator between PATH and (req, res) as middleware
+    // (2) store the potential errors in a var via const error = validationResult(req)
+    // (3) check is error var is empty and react accordingly
+
 router.post(
     '/create',
     isAuth,
-    body('name', 'Name is required!').not().isEmpty(),
-    body('description').isLength({min: 5, max: 120}),
+    body('name', 'Name is required!').not().isEmpty(), // (1)
+    body('description').isLength({min: 5, max: 120}), // (1)
     body('difficultyLevel', 'Difficulty Level is required to be in range 1 to 6').toInt().isInt({min: 1, max: 6}),
     async (req, res) => {
         const cube = req.body; //extract info in variable cube
 
         cube.owner = req.user._id; //add one more property by using the req.user (provided by app.use(auth))
 
-        const errors = validationResult(req);
+        const errors = validationResult(req); // (2)
 
-        if (!errors.isEmpty()) {
+        if (!errors.isEmpty()) { // (3)
             console.log(errors);
             return res.status(400).send(errors.array()[0].msg);
         }
