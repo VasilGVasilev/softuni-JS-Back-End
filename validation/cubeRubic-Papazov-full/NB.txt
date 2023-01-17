@@ -1,3 +1,4 @@
 Lecture bookmarks:
 
-2:37:00
+1:58:00
+Cannot figure ouut higher order function in general and in modelValidator

@@ -8,3 +8,5 @@ exports.modelValidator = (Model) => async (req, res, next) => {
         res.status(400).send(Object.values(error)[0]);
     }
 };
+
+// Higher order function ""(model) => returns" "async await function""
