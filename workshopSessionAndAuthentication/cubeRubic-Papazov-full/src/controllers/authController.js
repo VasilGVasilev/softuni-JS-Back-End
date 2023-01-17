@@ -7,7 +7,7 @@ const { sessionName } = require('../constants');
 router.get('/register', (req, res) => {
     res.render('auth/register');
 });
-
+// or add isEmail middleware from validatorsMiddleware
 router.post('/register', async (req, res, next) => {
     if (!isEmail(req.body.username)) {
         // return res.status(404).send('Invalid email');
