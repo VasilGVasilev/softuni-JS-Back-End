@@ -1,7 +1,102 @@
+// ERROR c is undefined, cannot call due to c encapsualted in a()
+    // function a(){
+    //     function c(){
+    //         console.log('Hello');
+    //     }
+    //     return c()
+    // }
+    // function b(){
+    //     c()
+    // }
 
-function addToM(n) { 
-    return m => m + n
-};
+    // b()
 
-let addToMequal10 = addToM(10)
-console.log(addtoMequal10(5));
+
+// SOLUTION
+    // function a(){
+    //     function c(){
+    //         console.log('Hello');
+    //     }
+    //     return c()
+    // }
+    // function b(){
+    //     a()
+    // }
+
+    // b()
+
+    
+    // prints 5, interestingly without the need to set y inside "= () =>"
+    // let y = 5;
+    
+    // const b = () => console.log(y)
+    
+    // b(y)
+    //  OR
+    
+    // let y = 5;
+    
+    // function b(){
+        //     console.log(y);
+        // }
+        
+        // b(y)
+        
+        
+        // let y = 5;
+        
+        
+        // function b(y) {
+            //     function m(){
+                //         console.log('heloo');
+                //     }
+                // } 
+                
+                // b(y)
+
+// Model exmaple that does not input variable correctly to be accessible in the inner function
+
+    // let y = 5;
+
+    // const b = (y) => () => {
+    //     y+=1;
+    //     console.log(y);
+    // }
+    // b(y)
+
+// it works only if you doubly execute b, namely, b(y)()
+
+    // let y = 5;
+
+    // const b = (y) => () => {
+    //     y+=1;
+    //     console.log(y);
+    // }
+    // b(y)()
+
+// model example of Papazov, in fact, does that
+
+// FIRST EXECUTION in accessoryController 
+// router.post('/create', modelValidator(Accessory), async (req, res) => {
+
+    
+//     router.post('/create', modelValidator(Accessory), async (req, res) => { //HERE
+//         await accessoryService.create(req.body);
+        
+//         res.redirect('/');
+//     });
+    
+// SECOND EXECUTION in modelValidatorMiddleware
+// next()
+
+// exports.modelValidator = (Model) => async (req, res, next) => {
+//     try {
+//         await Model.validate(req.body);
+
+//         next(); //<--------------HERE
+//     } catch (error) {
+//         console.log(error);
+//         res.status(400).send(Object.values(error)[0]);
+//     }
+// };
+
