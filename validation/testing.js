@@ -54,7 +54,7 @@
                 
                 // b(y)
 
-// Model exmaple that does not input variable correctly to be accessible in the inner function
+// INITIAL PROBLEM regarding higher order functions -> model validator 
 
     // let y = 5;
 
@@ -70,7 +70,7 @@
 
     // const b = (y) => () => {
     //     y+=1;
-    //     console.log(y);
+    //     console.log(y); // y can take its initial value from whatever outer function
     // }
     // b(y)()
 
@@ -99,4 +99,3 @@
 //         res.status(400).send(Object.values(error)[0]);
 //     }
 // };
-
