@@ -23,7 +23,7 @@ router.post('/register', async (req, res, next) => {
         await authService.register(req.body);
         
         res.redirect('/auth/login');
-    } catch (error) {
+    } catch (error) { //catching the error from authService.register
         // res.locals.error = error.message;
         res.status(401).render('auth/register', {error: error.message});
     }
@@ -44,7 +44,7 @@ router.post('/login', async (req, res) => {
         res.cookie(sessionName, token, { httpOnly: true });
 
         res.redirect('/');
-    } catch (error) {
+    } catch (error) { //catching the error from authService.login
         res.status(400).render('auth/login', { error: error.message })
     }
 });

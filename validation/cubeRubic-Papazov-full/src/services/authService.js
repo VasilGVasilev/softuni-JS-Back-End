@@ -45,10 +45,11 @@ exports.login = async ({ username, password }) => {
 
     const isValid = await bcrypt.compare(password, user.password);
 
+    // error handling, instead of simple return -> throw error
     if (!isValid) {
-        throw {
-            message: 'Invalid username or password'
-        };
+        throw { //this throw is catched in authController
+            message: 'Invalid username or password' //design decision to avoid giving out too much info
+        }; //object instead of string, so that you can develop with metadata in future
     }
 
     // if there is user and the password validation is passed
