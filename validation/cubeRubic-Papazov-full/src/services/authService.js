@@ -10,12 +10,13 @@ exports.register = async ({ username, password, repeatPassword }) => {
     //     return false;
     // }
 
-    // let hashedPassword = await bcrypt.hash(password, saltRounds);
+    // hashing is now made on the User Model with userSchema.pre('save', function(next))
+        // let hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    // let createdUser = User.create({
-    //     username,
-    //     password: hashedPassword,
-    // });
+        // let createdUser = User.create({
+        //     username,
+        //     password: hashedPassword,
+        // });
 
     let createdUser = await User.create({
         username,
