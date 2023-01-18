@@ -26,7 +26,7 @@ router.post('/register', async (req, res, next) => {
         res.redirect('/auth/login');
     } catch (error) { //catching the error from authService.register
         // res.locals.error = error.message;
-        res.status(401).render('auth/register', {error: error.message});
+        res.status(401).render('auth/register', {error: error.message}); //system error due to required in User Model
     }
 });
 
