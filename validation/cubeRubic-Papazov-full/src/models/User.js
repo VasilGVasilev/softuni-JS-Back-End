@@ -51,7 +51,7 @@ userSchema.virtual('repeatPassword').set(function(value) { //not all properties 
 });
 
 userSchema.pre('save', function(next) { //old style -> execute next() in promise resolve
-    bcrypt.hash(this.password, saltRounds)
+    bcrypt.hash(this.password, saltRounds) //this. relates to the User schema property
         .then(hashedPassword => {
             this.password = hashedPassword;
 
