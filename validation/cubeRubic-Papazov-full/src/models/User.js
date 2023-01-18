@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema({ //define new Schema
 
 // const Model = mongoose.model('Test', schema);
 // const doc = new Model();
-// // Calls the setter with `value = 'Jean-Luc Picard'`
+// // Calls the setter with `value = Jean-Luc Picard'`
 // doc.fullname = 'Jean-Luc Picard';
 // doc.name.first; // 'Jean-Luc'
 // doc.name.last; // 'Picard'
