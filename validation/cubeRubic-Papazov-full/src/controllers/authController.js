@@ -16,8 +16,9 @@ router.post('/register', async (req, res, next) => {
             status: 401,
         };
 
-        return next(error);
-    }
+        return next(error); //putting the error in next is for the errorHandlerMiddleware to catch
+    } //the middleware is, in fact, set after the app.use(routes) in index.js
+    // middlewares can be post, not only, pre main app logic /Routers/
     
     try {
         await authService.register(req.body);

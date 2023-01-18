@@ -14,7 +14,7 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(auth);
 app.use(routes);
-app.use(errorHandler);
+app.use(errorHandler); //so that the default is not 404 page
 
 initializeDatabase() //mongoose.connect(url) returns a promise
     .then(() => { //if connection is established to DB, resolve promise by listening to server
