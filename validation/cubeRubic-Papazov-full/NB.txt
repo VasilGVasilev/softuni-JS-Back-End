@@ -1,4 +1,26 @@
-Lecture bookmarks:
+req.user 
 
-1:58:00
-Cannot figure ouut higher order function in general and in modelValidator
+    authmiddleware
+        req.user set in auth middleware is an additional custom property .user that we manually create
+        in it we store the decoded token with 4 properties of its own
+
+    cubeController create
+        cube.owner property is added manually to cube object and populated with req.user._id
+
+    cubeController details
+        specific cube is referenced by cube.owner (holding the id of the owner) 
+        and is used to judge if a cube owner's id is the same as the the current req.user?._id (? is to avoid error if no user property is attached to req)
+        if it is a var isOwner is true and this reflects on the contents of details template
+
+res.locals
+
+    authMiddleware auth
+        Use this property to set variables accessible in templates rendered with res.render. 
+        The variables set on res.locals are available within a single request-response cycle,
+        thus, can be user specific
+
+        res.locals.user = decodedToken can then be used in every template
+
+    views/details
+
+        {{#if user}} comes from the hovering above all the app res.locals
