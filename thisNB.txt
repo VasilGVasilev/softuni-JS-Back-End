@@ -1,0 +1,99 @@
+Usually, in non-strict mode this is a reference to an object
+
+the value of this is determined by how a function is called (runtime binding)
+
+due to this retaining the value of the enclosing lexical context with arrow functions,
+this cannot be resused in its classical sense, one has to wrap context to normal functions via .bind() 
+
+  let user1 = {
+    firstName: "Ilya",
+    sayHi() {
+      let arrow = () => alert(this.firstName); //cannot return directly {()=>alert()},need to define and call arrow function
+      arrow();
+    }
+  };
+
+  user1.sayHi(); // Ilya
+
+  
+  arrow functions are thus perfect for method of objects, but what if you want to reuse the method sayHi with a different context
+
+what I mean by reuse:
+
+  let user1 = {
+    firstName: "Ilya",
+    sayHi: function() {
+      return this.firstName;
+    }
+  };
+
+  let user2 = {
+    firstName: "Vasilya",
+  };
+
+
+  let user1MethodOnUser2 = user1.sayHi.bind(user2)
+  >> Vasilya
+
+
+Function context -Inside a function, the value of this depends on how the function is called. 
+Callback context - When a function is passed as a callback, the value of this depends on how the callback is called, which is determined by the implementor of the API.  typically undefined see below
+Arrow function context - In arrow functions, this retains the value of the enclosing lexical context's this
+Constructor context - When a function is used as a constructor (with the new keyword), its this is bound to the new object being constructed, no matter which object the constructor function is accessed on. The value of this becomes the value of the new expression unless the constructor returns another non–primitive value.
+
+THIS in callbacks with normal or arrow function
+
+ARROW function as a callback function
+  let group = {
+      title: "Our Group",
+      students: ["John", "Pete", "Alice"],
+    
+      showList() {
+        this.students.forEach(
+          student => console.log(this.title + ': ' + student)
+        );
+      }
+    };
+    
+    group.showList();
+
+  >> Our Group: John, Our Group: Pete, Our Group: Alice
+
+
+  IF we console.log(this)
+  >> Object { showList: ,students: (3) ,title:Our Group}, Object { showList: ,students: (3) ,title:Our Group}, Object { showList: ,students: (3) ,title:Our Group}
+
+  EXPLAINATION:
+   In arrow functions, this retains the value of the enclosing lexical context's this. In other words, when evaluating an arrow function's body, the language does not create a new this binding.
+  Arrow functions create a closure over the this value of its surrounding scope, which means arrow functions behave as if they are "auto-bound" — no matter how it's invoked, 
+  this is set to what it was when the function was created.
+  I PRESUME that due to the rule that in non-strict mode, a special process called this substitution ensures that the value of this is always an object.
+  here this is bound to group Object and this.title
+
+NORMAL function as a callback function
+
+let group = {
+    title: "Our Group",
+    students: ["John", "Pete", "Alice"],
+  
+    showList() {
+      this.students.forEach(function(student) {
+        // Error: Cannot read property 'title' of undefined
+        console.log(this.title + ': ' + student);
+      });
+    }
+  };
+  
+  group.showList();
+
+  >> undefined: John, undefined: Pete, undefined: Alice
+
+  IF we console.log(this)
+
+  >> Window {...}, Window {...}, Window {...}
+
+  EXPLAINATION: 
+   since this in callback are typically called with a value of undefined, this.title is too undefined
+   BUT due to 'In non-strict mode, a special process called this substitution ensures that the value of this is always an object.
+   If a function is called with this set to undefined or null, this gets substituted with global',
+   thus, if we print this, it is undefined and then set to global Object -> window, and this being undefined makes this.title automatically, undefined
