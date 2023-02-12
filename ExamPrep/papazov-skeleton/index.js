@@ -1,7 +1,9 @@
 const express = require('express');
 const handlebars = require('express-handlebars');
 const { mongoose } = require('mongoose');
+
 const cookieParser = require('cookie-parser')
+const { authentication } = require('./middlewares/authenticationMiddleware')
 
 const routes = require('./routes')
 
@@ -16,6 +18,8 @@ app.set('view engine', 'hbs');
 app.use('/static', express.static('public')) //tells to search in 'public' if you have '/static', optimised solution due to targeting not all request, rather only those with '/static'
 app.use(express.urlencoded({extended: false}))
 app.use(cookieParser()) //set (res.cookie()) and read (req.cookies) cookies that persist in borwser memory and are accessible via each request
+
+app.use(authentication)
 
 app.use(routes)
 

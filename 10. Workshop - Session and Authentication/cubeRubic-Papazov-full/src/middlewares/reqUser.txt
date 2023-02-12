@@ -1,0 +1,91 @@
+in express.js can I attach a property user to request object like req.user = 'userInfo'?
+
+    Yes, in Express.js you can attach a property to the request object (req). This is a common practice when using authentication in a web application, 
+    where you might want to store information about the authenticated user on the request object for easy access in subsequent middleware and routes.
+
+    For example, you can add the userInfo to the request object as follows:
+
+    python
+
+        app.use((req, res, next) => {
+            req.user = 'userInfo';
+            next();
+        });
+
+    In this example, the req.user property is attached in a middleware function that is executed for every incoming request. 
+    The next function is called to pass the control to the next middleware in the chain or to the corresponding route handler.
+
+    You can then access this property in subsequent middleware and route handlers as follows:
+
+    javascript
+
+        app.get('/', (req, res) => {
+            console.log(req.user); // outputs 'userInfo'
+        });
+
+
+where else can I attach this custom property user so that it persist be useful with subsequent requests?
+
+    You can attach the custom property user to the request object in several places, such as in middleware functions, route handlers, and session stores.
+
+    Here are a few common ways to persist the custom property user for subsequent requests:
+
+        Middleware functions: You can attach the user property to the request object in middleware functions that run before the route handlers. 
+        This way, you can make the user information available to all subsequent middleware and route handlers.
+
+        Session stores: If you are using a session management middleware, such as express-session, you can store the user information in the session store. 
+        This way, the user information will persist across multiple requests from the same client.
+
+        For example:
+
+        php
+
+            app.use(session({
+                secret: 'your-secret-key',
+                resave: false,
+                saveUninitialized: true
+            }));
+
+            app.use((req, res, next) => {
+                if (!req.session.user) {
+                    req.session.user = 'userInfo';
+                }
+                next();
+            });
+
+    In this example, the custom property user is attached to the session store in a middleware function. When the req.session.user property is first accessed, 
+    it is set to 'userInfo'. On subsequent requests from the same client, the req.session.user property will contain the value stored in the session store.
+
+        Passport.js: If you are using Passport.js for authentication, you can store the user information in the Passport session. This way, the user information 
+        will persist across multiple requests from the same client and will be easily accessible in subsequent middleware and route handlers.
+
+    For example:
+
+    javascript
+
+        app.use(passport.initialize());
+        app.use(passport.session());
+
+        passport.serializeUser((user, done) => {
+            done(null, user);
+        });
+
+        passport.deserializeUser((user, done) => {
+            done(null, user);
+        });
+
+        passport.use(new LocalStrategy(
+            (username, password, done) => {
+                // Authenticate the user and store the user object in req.user
+                User.findOne({ username }, (err, user) => {
+                if (err) { return done(err); }
+                if (!user) { return done(null, false); }
+                if (!user.validPassword(password)) { return done(null, false); }
+                return done(null, user);
+                });
+            }
+        ));
+
+        app.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }));
+
+    In this example, the req.user property is automatically attached by Passport when the user is authenticated. This property will contain the user information that was stored in the session store.
