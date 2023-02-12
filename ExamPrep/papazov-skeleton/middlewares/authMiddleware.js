@@ -23,3 +23,11 @@ exports.authentication = async (req, res, next) => {
     // if user not logged in, ignore and just let execution continue
     next()
 }
+
+exports.isAuth = (req, res, next) => {
+    if(!req.user) {
+        return res.redirect('/login')
+    }
+
+    next()
+}

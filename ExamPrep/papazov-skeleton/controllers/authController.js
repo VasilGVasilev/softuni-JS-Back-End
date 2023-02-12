@@ -1,6 +1,8 @@
 const router = require('express').Router();
 
-const authService = require('../services/authServices')
+const authService = require('../services/authServices');
+
+const { isAuth } = require('../middlewares/authMiddleware')
 
 router.get('/login', (req, res) => {
     res.render('auth/login')
@@ -28,5 +30,9 @@ router.post('/register', async (req, res) => {
     // TODO login automatically inbetweeen register and home
 })
 
+router.get('/logout', isAuth,  (req, res) => { //secutiry requirement only logged in can log out -> we check isAuth middleware then we execute logic of this particluar router
+    res.clearCookie('auth');
+    res.redirect('/')
+})
 
 module.exports = router;
