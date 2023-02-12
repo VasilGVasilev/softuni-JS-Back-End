@@ -15,8 +15,13 @@ exports.register = async (username, email, password, repeatPassword) => {
         throw new Error('Password mismatch')
     }
 
-    // Check if user exists
-    const existingUser = await this.findByUsername(username); // why this, is it because we are usin class-based logic accessing of class method?
+    // Check if user with either such email or with such username exists in DB
+    const existingUser = await User.findOne({
+        $or: [
+            {email},
+            {username}
+    ]})
+
     if(existingUser){
         throw new Error('User exists')
     }
@@ -27,10 +32,10 @@ exports.register = async (username, email, password, repeatPassword) => {
 
     const hashedPassword = await bcrypt.hash(password, 10)
 
-    await User.create({username, email, password})
+    await User.create({username, email, password: hashedPassword})
 }
 
-exports.login = async(email, password) => {
+exports.login = async (email, password) => {
 
     // User exists
     const user = await this.findByEmail(email)
@@ -39,7 +44,7 @@ exports.login = async(email, password) => {
     }
 
     // Password is valid
-    const isValid = await bcrypt.compare(user.password, password)
+    const isValid = await bcrypt.compare(password, user.password)
     if (!isValid){
         throw new Error('Invalid email or password')
     }
