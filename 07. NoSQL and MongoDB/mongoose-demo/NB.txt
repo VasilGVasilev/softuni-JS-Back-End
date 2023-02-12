@@ -33,3 +33,8 @@ and run on the server-side, rather than being delivered to the client via a CDN.
 Additionally, some developers and organizations prefer to host their own libraries and other resources, 
 rather than relying on a CDN. This can give them more control over the availability and performance of the resources, 
 but it can also increase the burden on their own servers and infrastructure.
+
+
+to create DB colelctions and models in them:
+configure mongoose.connect()
+make a request from this app via for example [Model].create() to DB and Mongoose will create them via the set by you Model

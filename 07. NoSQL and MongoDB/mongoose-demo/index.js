@@ -14,7 +14,7 @@ mongoose.connect(url)
     })
     .catch((err) => {
         console.log('DB ERror: ', err);
-    })
+    }) //by making first [Model].create() in this app, the DB with collection and respective models are created
 
 app.use(express.urlencoded({extended: false}));
 app.engine('hbs', hbs.engine({
