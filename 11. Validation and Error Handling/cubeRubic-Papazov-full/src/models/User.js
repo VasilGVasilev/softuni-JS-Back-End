@@ -50,6 +50,8 @@ userSchema.virtual('repeatPassword').set(function(value) { //not all properties 
     }
 });
 
+// pre('save') is a hook that is set after validation so above validation is executed
+// but before saving the data in DB, for more see DBHooks.png
 userSchema.pre('save', function(next) { //old style -> execute next() in promise resolve
     bcrypt.hash(this.password, saltRounds) //this. relates to the User schema property
         .then(hashedPassword => {
