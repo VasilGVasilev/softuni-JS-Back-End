@@ -1,5 +1,9 @@
 const router = require('express').Router();
 
-// TODO: add routes
+// add routes
+const homeController = require('./controllers/homeController');
+
+// attach controllers to router middleware
+router.use(homeController)
 
 module.exports = router
