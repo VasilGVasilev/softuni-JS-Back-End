@@ -9,6 +9,9 @@ router.get('/register', (req, res) => {
 });
 
 router.post('/register', async (req, res, next) => {
+
+    // Global error handling utilizing next() to pass on error to errorHandlerMiddleware
+
     if (!isEmail(req.body.username)) {
         // return res.status(404).send('Invalid email');
         let error = {
@@ -20,6 +23,7 @@ router.post('/register', async (req, res, next) => {
     } //the middleware is, in fact, set after the app.use(routes) in index.js
     // middlewares can be post, not only, pre main app logic /Routers/
     
+    // Local error handling
     try {
         await authService.register(req.body);
         
