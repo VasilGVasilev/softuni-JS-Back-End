@@ -24,3 +24,5 @@ exports.buy = async (userId, cryptoId) => {
 
 // findByIdAndUpdate is smart and updates only edited info
 exports.edit = (cryptoId, cryptoData) => Crypto.findByIdAndUpdate(cryptoId, cryptoData)
+
+exports.delete = (cryptoId) => Crypto.findByIdAndDelete(cryptoId)
