@@ -26,4 +26,4 @@ app.use(routes)
 mongoose.set('strictQuery', false); //deprication warning when starting app without it
 mongoose.connect('mongodb://localhost:27017/crypto') //by making first [Model].create() in this app, the DB with collection and respective models are created
 
-app.listen(5000, () => console.log('Server is running on port 5000...'))
+app.listen(3000, () => console.log('Server is running on port 3000...'))
