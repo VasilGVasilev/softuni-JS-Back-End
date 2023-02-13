@@ -4,9 +4,15 @@ const {isAuth} = require('../middlewares/authMiddleware')
 const cryptoService = require('../services/cryptoService')
 const { getErrorMessage } = require('../utils/errorUtils')
 
+// If necessary lean!!
 router.get('/catalog', async (req, res) => {
-    const crypto = await cryptoService.getAll().lean();
-    res.render('crypto/catalog', {crypto}) //to test with empty catalog crypto: []
+    const crypto = await cryptoService.getAll();
+    res.render('crypto/catalog', {crypto}) //to test with empty catalog crypto: [], hbs takes priority over default JS empty array [] === true
+})
+
+router.get('/:cryptoId/details', async (req, res) => {
+    const crypto = await cryptoService.getOne(req.params.cryptoId);
+    res.render('crypto/details', {crypto}) //to test with empty catalog crypto: []
 })
 
 router.get('/create', isAuth, (req, res) => {
