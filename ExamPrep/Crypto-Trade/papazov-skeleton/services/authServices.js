@@ -26,7 +26,9 @@ exports.register = async (username, email, password, repeatPassword) => {
     }
 
     // Validate password here instead of in User model because you are passing in there a hashed pass, not the original! length, 
-    // TODO
+    if(password.length < 4){
+        throw new Error('Password too short')
+    }
 
 
     const hashedPassword = await bcrypt.hash(password, 10)

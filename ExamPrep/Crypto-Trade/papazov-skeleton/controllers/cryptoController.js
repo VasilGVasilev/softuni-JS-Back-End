@@ -17,7 +17,7 @@ router.get('/:cryptoId/details', async (req, res) => {
     //view data so no problem to be acquired here in controller
     // const isOwner = crypto.owner.toString() === req.user?._id // crypto.owner will be returned as an object, so use toString()
     const isOwner = crypto.owner == req.user?._id //optional chaining -> what if req.user is undefined because no user is logged int to popoulate req.user, easy with ?. which is => if there is req.user - good if req.user is undefined - return undefined (instead of executing an error due to undefined)
-    const isBuyer = crypto.buyers.some(id => id == req.user?._id)
+    const isBuyer = crypto.buyers?.some(id => id == req.user?._id)
     res.render('crypto/details', {crypto, isOwner, isBuyer}) //to test with empty catalog crypto: []
 })
 
@@ -44,6 +44,7 @@ router.post('/:cryptoId/edit', isAuth, async (req, res) => {
     const cryptoData = req.body;
 
     const crypto = await cryptoService.edit(req.params.cryptoId, cryptoData)
+
     // TODO: check if owner
     res.redirect(`/crypto/${req.params.cryptoId}/details`)
 })
