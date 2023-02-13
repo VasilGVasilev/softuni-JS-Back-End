@@ -11,7 +11,7 @@ router.get('/register', (req, res) => {
 router.post('/register', async (req, res, next) => {
 
     // Global error handling utilizing next() to pass on error to errorHandlerMiddleware
-
+    // disadvanatage is that if you dont have a view to some route -> debugging will be hard
     if (!isEmail(req.body.username)) {
         // return res.status(404).send('Invalid email');
         let error = {
@@ -32,6 +32,8 @@ router.post('/register', async (req, res, next) => {
         // res.locals.error = error.message;
         res.status(401).render('auth/register', {error: error.message}); //system error due to required in User Model
     }
+    // NB session library is used when you want both error message and redirect
+
 });
 
 router.get('/login', (req, res) => {

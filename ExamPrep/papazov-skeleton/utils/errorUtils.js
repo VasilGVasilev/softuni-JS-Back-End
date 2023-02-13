@@ -2,9 +2,11 @@
 
 // list of all mongoose errors and return first of them
 function getFirstMongooseError(error){
-    const errors = Object.keys(error.errors).map(key => error.errors[key].message);
+    // for better mapping of values: 0 - username error, 1 - email error, 2 - pass error;
+    // const errors = Object.keys(error.errors).map(key => error.errors[key].message);
+    const firstError = Object.values(error.errors)[0].message;
 
-    return errors[0];
+    return firstError;
 }
 
 // differentiate between Model and services error
