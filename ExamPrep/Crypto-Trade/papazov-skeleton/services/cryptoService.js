@@ -36,6 +36,6 @@ exports.buy = async (userId, cryptoId) => {
 // }
 
 // findByIdAndUpdate is smart and updates only edited info
-exports.edit = (cryptoId, cryptoData) => Crypto.findByIdAndUpdate(cryptoId, cryptoData)
+exports.edit = (cryptoId, cryptoData) => Crypto.findByIdAndUpdate(cryptoId, cryptoData, {runValidators:true}) //va;idation works on edit view too
 
 exports.delete = (cryptoId) => Crypto.findByIdAndDelete(cryptoId)
