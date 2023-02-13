@@ -1,3 +1,5 @@
+// Comments made during skeleton construction
+
 const express = require('express');
 const handlebars = require('express-handlebars');
 const { mongoose } = require('mongoose');

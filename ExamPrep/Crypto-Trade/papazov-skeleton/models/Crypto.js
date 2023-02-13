@@ -28,7 +28,11 @@ const cryptoSchema = new mongoose.Schema({
     owner: { // one to many, one crypto per owner (reference shows which is owner) 
         type: mongoose.Types.ObjectId,
         ref: 'User'
-    }                
+    },
+    buyers: [{
+        type: mongoose.Types.ObjectId,
+        ref: 'User'
+    }]                
 })
 
 const Crypto = mongoose.model('Crypto', cryptoSchema);
