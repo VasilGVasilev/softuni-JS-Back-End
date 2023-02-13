@@ -3,14 +3,21 @@ const router = require('express').Router();
 const {isAuth} = require('../middlewares/authMiddleware')
 const cryptoService = require('../services/cryptoService')
 const { getErrorMessage } = require('../utils/errorUtils')
-const { paymentMethodsMap } = require('../constants')
-
+const { getPaymentMethodViewData } = require('../utils/viewDataUtils')
 // isAuth is for security requirements
 // If necessary lean!!
 router.get('/catalog', async (req, res) => {
     const crypto = await cryptoService.getAll();
     res.render('crypto/catalog', {crypto}) //to test with empty catalog crypto: [], hbs takes priority over default JS empty array [] === true
 })
+
+router.get('/search', async (req, res) => {
+    const {name, paymentMethod} = req.query //req.query due to being a GET request
+    const crypto = await cryptoService.search(name, paymentMethod);
+    const paymentMethods = getPaymentMethodViewData(paymentMethod)
+    res.render('crypto/search', {crypto, paymentMethods}) 
+})
+
 
 router.get('/:cryptoId/details', async (req, res) => {
     const crypto = await cryptoService.getOne(req.params.cryptoId);
@@ -31,11 +38,7 @@ router.get('/:cryptoId/edit', isAuth, async (req, res) => {
 
     // mapping for options/select in view
     // key is so that you can access the value via [key] but contextually, it keys are the values, thus, crypto.paymentMethod (selected in DB) ?== key (current mapping value)
-    const paymentMethods = Object.keys(paymentMethodsMap).map(key => ({
-        value: key, 
-        label: paymentMethodsMap[key],
-        isSelected: crypto.paymentMethod == key
-    }))
+    const paymentMethods = getPaymentMethodViewData(crypto.paymentMethod)
 
     res.render('crypto/edit', { crypto, paymentMethods })
 })
