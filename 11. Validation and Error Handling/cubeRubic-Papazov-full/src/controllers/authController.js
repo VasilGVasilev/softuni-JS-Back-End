@@ -23,7 +23,7 @@ router.post('/register', async (req, res, next) => {
     } //the middleware is, in fact, set after the app.use(routes) in index.js
     // middlewares can be post, not only, pre main app logic /Routers/
     
-    // Local error handling
+    // Local error handling - error thrown in Service catched here in Controller
     try {
         await authService.register(req.body);
         
