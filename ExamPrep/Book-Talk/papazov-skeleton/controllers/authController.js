@@ -34,6 +34,7 @@ router.post('/register', async (req, res) => {
     // register and auto login
     try {
         const token = await authService.register(username, email, password, repeatPassword)
+        // auto login
         res.cookie('auth', token)
         res.redirect('/') 
     } catch (error) {

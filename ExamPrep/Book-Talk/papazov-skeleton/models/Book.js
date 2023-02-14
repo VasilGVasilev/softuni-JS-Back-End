@@ -4,33 +4,33 @@ const bookSchema = new mongoose.Schema({
     title: {
         type: String,
         minLength: 2,
-        required: [true, 'Username is required']
+        required: [true, 'Title is required']
     },
     author: {
         type: String,
         minLength: 5,
-        required: [true],
+        required: [true, 'Author is required']
     },
     image: {
         type: String,
-        required: true,
+        required: [true, 'Image is required'],
         validate: /^https?:\/\//
     },
     bookReview: {
         type: String,
         minLength: 10,
-        required: true
+        required: [true, 'Book review is required']
     },
     genre: {
         type: String,
         minLength: 3,
-        required: true
+        required: [true, 'Genre is required']
     },
     stars: {
         type: Number,
         min: 1,
         max: 5,
-        required: true
+        required: [true, 'Stars are required']
     },
     wishingList: [{
         type: mongoose.Types.ObjectId,

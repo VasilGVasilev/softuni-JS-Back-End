@@ -8,7 +8,7 @@ const bookController = require('./controllers/bookController')
 // attach controllers to router middleware
 router.use(homeController);
 router.use(authController);
-router.use('/books', bookController)
+router.use('/book', bookController)
 router.all('*', (req,res)=>{
     res.render('home/404')
 })
