@@ -5,6 +5,16 @@ exports.create = (ownerId, bookData) => Book.create({...bookData, owner: ownerId
 // dont forget to .lean() if not here in service so that templating engine works
 exports.getAll = () => Book.find({}).lean();
 
+exports.getAllWished = async (userId) => {
+    const books = await Book.find().lean();
+    console.log(books.map(book => book.wishingList.toString()))
+    const wishedBooks = books.map(book => book.wishingList.some(wishedBook => wishedBook.toString() == userId));
+    console.log(wishedBooks)
+    return wishedBooks
+
+}
+
+(userId) => Book.find({wishingList: {}});
 
 exports.getOne = (bookId) => Book.findById(bookId).lean()
 
