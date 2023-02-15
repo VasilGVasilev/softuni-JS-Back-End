@@ -2,11 +2,11 @@ const router = require('express').Router();
 
 const authService = require('../services/authServices');
 
-const { isAuth } = require('../middlewares/authMiddleware')
+const { isAuth, isGuest } = require('../middlewares/authMiddleware')
 
 const { getErrorMessage } = require('../utils/errorUtils')
 
-router.get('/login', (req, res) => {
+router.get('/login', isGuest, (req, res) => {
     res.render('auth/login')
 })
 
@@ -25,15 +25,15 @@ router.post('/login', async (req, res) => {
 
 })
 
-router.get('/register', (req, res) => {
+router.get('/register', isGuest, (req, res) => {
     res.render('auth/register')
 })
 
 router.post('/register', async (req, res) => {
-    const {username, email, password, repeatPassword} = req.body;
+    const {email, password, repeatPassword, description} = req.body;
     // register and auto login
     try {
-        const token = await authService.register(username, email, password, repeatPassword)
+        const token = await authService.register(email, password, repeatPassword, description)
         res.cookie('auth', token)
         res.redirect('/') 
     } catch (error) {

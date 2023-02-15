@@ -7,9 +7,9 @@ exports.getAll = () => Book.find({}).lean();
 
 exports.getAllWished = async (userId) => {
     const books = await Book.find().lean();
-    console.log(books.map(book => book.wishingList.toString()))
+    // console.log(books.map(book => book.wishingList.toString()))
     const wishedBooks = books.map(book => book.wishingList.some(wishedBook => wishedBook.toString() == userId));
-    console.log(wishedBooks)
+    // console.log(wishedBooks)
     return wishedBooks
 
 }
