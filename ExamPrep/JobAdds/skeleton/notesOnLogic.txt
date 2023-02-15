@@ -1,0 +1,5 @@
+
+register -> set bcrypt (hashing pass) and save model in DB
+login -> compare brypt and signing jwt
+authorisation  -> checking jwt
+req.user = decodedToken -> way to persist user after authorisation to give respective ownership rights
