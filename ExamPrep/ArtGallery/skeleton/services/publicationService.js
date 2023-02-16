@@ -11,6 +11,14 @@ exports.create = async (authorId, publicationData) => {
 // dont forget to .lean() if not here in service so that templating engine works
 exports.getAll = () => Publication.find({}).lean();
 
+exports.myPublications = async (userId) => {
+    return User.findById(userId).populate('myPublications');
+}
+
+exports.sharedPublications = () => {
+    return Publication.findById(userId).populate('myPublications');
+}
+
 // exports.getAllWished = async (userId) => {
 //     const publications = await Publication.find().lean();
     // console.log(publications.map(publication => publication.wishingList.toString()))
