@@ -15,6 +15,16 @@ exports.getAll = () => Job.find({}).lean();
 
 // }
 
+exports.search = async (email) => {
+    let job = await this.getAll();
+    // in-memory filtration
+    if (email) {
+        job = job.filter(x => x.email.toLowerCase() == email);
+    }
+    return job
+}
+
+
 exports.getOne = (jobId) => Job.findById(jobId).lean()
 
 exports.getAuthor = (userId) => User.findById(userId).lean()

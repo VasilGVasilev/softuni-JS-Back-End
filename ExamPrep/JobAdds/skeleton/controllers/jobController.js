@@ -11,6 +11,11 @@ router.get('/catalog', async (req, res) => {
     res.render('job/catalog', {jobs}) //to test with empty catalog job: [], hbs takes priority over default JS empty array [] === true
 })
 
+router.get('/search', async (req, res) => {
+    const {email} = req.query //req.query due to being a GET request
+    const job = await jobService.search(email);
+    res.render('job/search', {job}) 
+})
 
 router.get('/:jobId/details', async (req, res) => {
     const job = await jobService.getOne(req.params.jobId);
