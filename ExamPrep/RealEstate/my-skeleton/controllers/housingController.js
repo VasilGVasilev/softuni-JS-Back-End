@@ -12,11 +12,11 @@ router.get('/catalog', async (req, res) => {
     res.render('housing/catalog', {housings}) //to test with empty catalog housing: [], hbs takes priority over default JS empty array [] === true
 })
 
-// router.get('/search', async (req, res) => {
-//     const {email} = req.query //req.query due to being a GET request
-//     const housing = await housingService.search(email);
-//     res.render('housing/search', {housing}) 
-// })
+router.get('/search', async (req, res) => {
+    const {name} = req.query //req.query due to being a GET request
+    const housings = await housingService.search(name);
+    res.render('housing/search', {housings}) 
+})
 
 router.get('/:housingId/details', async (req, res) => {
     const housing = await housingService.getOne(req.params.housingId);

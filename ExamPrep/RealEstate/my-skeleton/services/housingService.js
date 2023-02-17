@@ -22,14 +22,15 @@ exports.getAll = () => Housing.find({}).lean();
 
 // }
 
-// exports.search = async (email) => {
-//     let housing = await this.getAll();
-//     // in-memory filtration
-//     if (email) {
-//         housing = housing.filter(x => x.email.toLowerCase() == email);
-//     }
-//     return housing
-// }
+exports.search = async (searched) => {
+    let housing = await this.getAll();
+    // in-memory filtration
+
+    housing = housing.filter(x => x.name === searched);
+    // console.log(housing);
+
+    return housing
+}
 
 
 exports.getOne = (housingId) => Housing.findById(housingId).populate('tenants').lean()
