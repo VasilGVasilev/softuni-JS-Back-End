@@ -16,7 +16,7 @@ exports.getAllWished = async (userId) => {
 
 // (userId) => Photo.find({wishingList: {}});
 
-exports.getOne = (photoId) => Photo.findById(photoId).lean().populate('owner').populate('commentList')
+exports.getOne = (photoId) => Photo.findById(photoId).lean().populate('owner')
 
 // easier but two requests!
 // exports.wish = async (userId, photoId) => {
@@ -27,14 +27,12 @@ exports.getOne = (photoId) => Photo.findById(photoId).lean().populate('owner').p
 
 // }
 
-
 // expert
 
 exports.comment = async (photoId, user, commentName) => {
     const photo = await Photo.findById(photoId);
     // TODO: check if user has already bought the publication
     const commentAndUser = {userId: user, comment: commentName}
-    console.log(commentAndUser)
     photo.commentList.push(commentAndUser);
     return photo.save();
 

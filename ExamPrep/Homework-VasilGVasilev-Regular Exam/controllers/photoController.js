@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const {isAuth} = require('../middlewares/authMiddleware')
 const photoService = require('../services/photoServices')
+const authService = require('../services/authServices')
 const { getErrorMessage } = require('../utils/errorUtils')
 
 // isAuth is for security requirements
@@ -17,15 +18,22 @@ router.get('/:photoId/details', async (req, res) => {
     
     //view data so no problem to be acquired here in controller
     // const isOwner = photo.owner.toString() === req.user?._id // photo.owner will be returned as an object, so use toString()
+    function updateIdToName (photo) {
+        photo.commentList.map(async obj =>{
+            const userName = await authService.findById(obj.userId);
+            obj.userId = userName.username;
+        })
+    }
+
+    updateIdToName(photo)
     const isOwner = photo.owner._id == req.user?._id //optional chaining -> what if req.user is undefined because no user is logged int to popoulate req.user, easy with ?. which is => if there is req.user - good if req.user is undefined - return undefined (instead of executing an error due to undefined)
     const notOwner = !isOwner;
-    const isWished = photo.wishingList?.some(id => id == req.user?._id)
+    const isWished = photo.commentList?.some(id => id == req.user?._id)
     res.render('photo/details', {photo, isOwner, isWished, notOwner}) //to test with empty catalog photo: []
 })
 
 router.post('/:photoId/commented', async (req, res) => {
     const {comment} = req.body;
-    const id = req.params.photoId;
 
     try {
         await photoService.comment(req.params.photoId, req.user._id, comment)
