@@ -1,3 +1,11 @@
+Setup Mongoose DB :
+[see papazov at 1:45:00](https://softuni.bg/trainings/resources/video/72281/video-30-may-2022-ivaylo-papazov-js-back-end-may-2022/3712)
+
+
+constructor for schema vs factory function for model:
+The factory function pattern is similar to constructors, but instead of using new to create an object, factory functions simply set up and return the new object when you call the function.
+
+
 Horizontal scaling 
 
 As mentioned above, sharding is horizontal scaling by spreading data across multiple nodes. 
